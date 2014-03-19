@@ -1,0 +1,47 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import 'sass-bootstrap/lib/bootstrap';
+
+$squareSize: 60px;
+$pieceSize: 50px;
+
+.rank {
+  display:table-row;
+}
+
+.square {
+  display:table-cell;
+  width:$squareSize;
+  height:$squareSize;
+  overflow:hidden;
+  text-align:center;
+  vertical-align:middle;
+  position:relative;
+  img {
+    width:$pieceSize;
+  }
+  .fileRank {
+    position:absolute;
+    bottom:3px;
+    right:3px;
+    font-size:0.7em;
+    text-transform:uppercase;
+    opacity:0.7;
+  }
+  &.black {
+    background-color:#b58863;
+    .fileRank {
+      color: #f0d9b5;
+    }
+  }
+  &.white {
+    background-color:#f0d9b5;
+    .fileRank {
+      color: #b58863;
+    }
+  }
+  &.highlight {
+    border:1px solid #F00;
+  }
+
+}

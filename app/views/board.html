@@ -1,0 +1,29 @@
+<div ng-hide="rotate" ng-init="rotate=false">
+  <h2>White</h2>
+  <div ng-repeat="rank in board.ranks" ng-init="rankNumber = 8-$index" class="rank">
+    <span ng-init="fileLetter = board.fileLabels[$index]" ng-repeat="square in rank track by $index" class="square {{square.color}}" ng-class="{highlight: square.highlight == true}" ng-click="board.selectSquare(fileLetter, rankNumber);">
+      <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
+      <img ng-src="images/pieces/{{board.art[square.piece]}}" ng-if="square.piece != false" />
+    </span>
+  </div>
+</div>
+
+<div ng-show="rotate">
+  <h2>Black</h2>
+  <div ng-repeat="rank in board.ranks | reverse" ng-init="rankNumber = $index+1" class="rank">
+    <span ng-init="fileLetter = board.fileLabels[7-$index]" ng-repeat="square in rank | reverse track by $index" class="square {{square.color}}" ng-class="{highlight: square.highlight == true}" ng-click="board.selectSquare(fileLetter, rankNumber);">
+      <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
+      <img ng-src="images/pieces/{{board.art[square.piece]}}" ng-if="square.piece != false" />
+    </span>
+  </div>
+</div>
+
+<form>
+  <input ng-model="fen" placeholder="Enter a Fen..."/>
+  <button ng-click="board.parseFen(fen)">Import FEN</button>
+  <button ng-click="fen = board.exportFen()">Export FEN</button>
+</form>
+
+<button ng-click="rotate = !rotate">Rotate</button>
+<button ng-click="board.init()">Empty board</button>
+<button ng-click="board.reset()">Reset board</button>
