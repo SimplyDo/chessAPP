@@ -1,0 +1,10 @@
+<board board="board" rotate="rotate"></board>
+<form>
+  <input ng-model="fen" placeholder="Enter a Fen..."/>
+  <button ng-click="board.parseFen(fen)">Import FEN</button>
+  <button ng-click="fen = board.exportFen()">Export FEN</button>
+</form>
+
+<button ng-click="rotate = !rotate">Rotate</button>
+<button ng-click="board.init()">Empty board</button>
+<button ng-click="board.reset()">Reset board</button>
