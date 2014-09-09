@@ -20,7 +20,13 @@ $pieceSize: 50px;
   img {
     width:$pieceSize;
   }
+  &:hover {
+    .fileRank {
+      display:block;
+    }
+  }
   .fileRank {
+    display:none;
     position:absolute;
     bottom:3px;
     right:3px;

@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('chessApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'chessBoardDirective'
 ])
   .config(function ($routeProvider) {
     $routeProvider
