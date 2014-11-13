@@ -1,0 +1,57 @@
+<div ng-show="newgame" class="modal">
+  <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
+  <button ng-click="newgame = false; newGame(pgn); pgn = ''">
+    <span class="iconic" data-glyph="check" title="New game" aria-hidden="true"> New game</span>
+  </button>
+  <button ng-click="newgame = false">
+    <span class="iconic" data-glyph="circle-x" title="Cancel" aria-hidden="true"> Cancel</span>
+  </button>
+</div>
+
+<div ng-show="export" class="modal">
+  <textarea rows="5">{{exportPgn}}</textarea>
+  <button ng-click="export = false">
+    <span class="iconic" data-glyph="check" title="Close" aria-hidden="true"> CLose</span>
+  </button>
+</div>
+
+<div class="game-wrapper">
+  <a ng-click="newgame = true">
+    <span class="iconic" data-glyph="plus" title="New game" aria-hidden="true">New </span>
+  </a>
+  <a ng-click="export = true">
+    <span class="iconic" data-glyph="data-transfer-download" title="New game" aria-hidden="true"> Export</span>
+  </a>
+  <div class="history">
+    <h2 class="history-title" ng-show="historyLength > 0">
+      <span class="history-step">{{historyStep}}/{{historyLength}}</span>
+    </h2>
+    <ul class="history-list">
+      <li ng-repeat="entry in history track by $index" class="history-list-entry" ng-class="{'history-list-entry-active': $index == historyStep-1}">
+      <a ng-click="rewindGame($index+1,false)" class="history-list-entry-link">{{entry}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="game">
+    <a class="stockfish-button" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
+        <span class="iconic iconic-md" data-glyph="electric" title="stockfish move" aria-hidden="true"> </span>
+    </a>
+
+    <board board="board" check="status.isCheck" checkmate="status.isCheckmate" side="status.side.name" selected="selectedSquare" moves="selectedMoves" rotate="rotateBoard"></board>
+
+    <a ng-click="rotateBoard = !rotateBoard" class="rotate-button">
+        <span class="iconic iconic-md" data-glyph="loop-circular" title="flip" aria-hidden="true"> </span>
+    </a>
+
+    <div class="controls">
+      <a class="controls-previous" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
+        <span class="iconic iconic-md" data-glyph="media-step-backward" title="flip" aria-hidden="true"> </span>
+      </a>
+      <a class="controls-next" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(1,true)">
+        <span class="iconic iconic-md" data-glyph="media-step-forward" title="flip" aria-hidden="true"> </span>
+      </a>
+    </div>
+  </div>
+</div>
+

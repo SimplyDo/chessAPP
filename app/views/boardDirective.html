@@ -1,19 +1,25 @@
-<div ng-hide="rotate" ng-init="rotate=false">
-  <h2>White</h2>
-  <div ng-repeat="rank in board.ranks" ng-init="rankNumber = 8-$index" class="rank">
-    <span ng-init="fileLetter = board.fileLabels[$index]" ng-repeat="square in rank track by $index" class="square {{square.color}}" ng-class="{highlight: square.highlight == true}" ng-click="board.selectSquare(fileLetter, rankNumber);">
-      <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
-      <img ng-src="images/pieces/{{board.art[square.piece]}}" ng-if="square.piece != false" />
-    </span>
-  </div>
-</div>
 
-<div ng-show="rotate">
-  <h2>Black</h2>
-  <div ng-repeat="rank in board.ranks | reverse" ng-init="rankNumber = $index+1" class="rank">
-    <span ng-init="fileLetter = board.fileLabels[7-$index]" ng-repeat="square in rank | reverse track by $index" class="square {{square.color}}" ng-class="{highlight: square.highlight == true}" ng-click="board.selectSquare(fileLetter, rankNumber);">
-      <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
-      <img ng-src="images/pieces/{{board.art[square.piece]}}" ng-if="square.piece != false" />
-    </span>
+<div class="board">
+  <div class="board-status">
+    <span ng-hide="checkmate || check">{{side}}'s turn</span>
+    <span ng-show="check">{{side}} is in check</span>
+    <span ng-show="checkmate">{{side}} is in check mate</span>
+  </div>
+  <div ng-if="!rotate">
+    <div ng-repeat="rank in ranks" ng-init="rankNumber = 8-$index" class="board-rank">
+      <span ng-init="fileLetter = fileLabels[$index]" ng-repeat="square in rank track by $index" class="board-square {{square.color}} {{square.highlight}}" ng-click="clickSquare(fileLetter, rankNumber);">
+        <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
+        <img ng-src="{{art[square.piece]}}" ng-if="square.piece != false" />
+      </span>
+    </div>
+  </div>
+
+  <div ng-if="rotate">
+    <div ng-repeat="rank in ranks | reverse" ng-init="rankNumber = $index+1" class="board-rank">
+      <span ng-init="fileLetter = fileLabels[7-$index]" ng-repeat="square in rank | reverse track by $index" class="board-square {{square.color}} {{square.highlight}}"  ng-click="clickSquare(fileLetter, rankNumber);">
+        <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
+        <img ng-src="{{art[square.piece]}}" ng-if="square.piece != false" />
+      </span>
+    </div>
   </div>
 </div>

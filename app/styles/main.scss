@@ -1,19 +1,136 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-
-@import 'sass-bootstrap/lib/bootstrap';
+@import '../bower_components/reset-scss/reset.scss';
 
 $squareSize: 60px;
-$pieceSize: 50px;
+$pieceSize: 55px;
 
-.rank {
-  display:table-row;
+$white-color: #f0d9b5;
+$black-color: #b58863;
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #000;
+  color:#AAA;
 }
 
-.square {
-  display:table-cell;
+.game-wrapper {
+}
+
+.game {
+  text-align:center;
+  user-select: none;
+}
+
+
+.history {
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  overflow:auto;
+}
+
+.history-title {
+  font-size:0.9em;
+  padding:10px 10px;
+  margin:0px;
+  color:#AAA;
+  font-weight:300;
+  text-align:right;
+}
+
+.history-step {
+}
+
+.history-list {
+  list-style:none;
+  padding:0px;
+  margin:0px;
+}
+
+.history-list-entry {
+  margin:0;
+  padding:0;
+  font-weight:300;
+}
+
+.history-list-entry-link {
+  display:block;
+  text-align:right;
+  padding:3px 10px;
+  color:#999;
+  cursor:pointer;
+  text-align:right;
+  &:hover {
+    color:#FFF;
+  }
+}
+
+.history-list-entry-active {
+  font-weight:400;
+  a {
+    color:red;
+  }
+}
+
+.rotate-button {
+  vertical-align:middle;
+  margin-left:10px;
+  &:hover {
+    color:#FFF;
+  }
+}
+
+.stockfish-button {
+  vertical-align:middle;
+  margin-right:10px;
+  color:#333;
+  &.active {
+    color:#AAA;
+    &:hover {
+      color:#FFF;
+    }
+  }
+}
+
+
+.board {
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.board-rank {
+  height: $squareSize;
+}
+
+.board-status {
+  font-weight:300;
+  margin-bottom:10px;
+  &:first-letter{
+    text-transform: capitalize
+  }
+}
+
+
+.controls {
+  margin-top:15px;
+}
+
+.controls-previous, .controls-next {
+  color:#333;
+  margin:0 10px;
+  &.active {
+    color:#AAA;
+    &:hover {
+      color:#FFF;
+    }
+  }
+}
+
+.board-square {
+  display:inline-block;
   width:$squareSize;
   height:$squareSize;
-  overflow:hidden;
   text-align:center;
   vertical-align:middle;
   position:relative;
@@ -35,19 +152,65 @@ $pieceSize: 50px;
     opacity:0.7;
   }
   &.black {
-    background-color:#b58863;
+    background-color:$black-color;
     .fileRank {
       color: #f0d9b5;
     }
+    &.selected {
+      background-color:blue;
+    }
+    &.move {
+     background-color:adjust-hue( $black-color,30%);
+    }
+    &.attack {
+     animation: attack-anim-black  1s  infinite;
+    }
   }
   &.white {
-    background-color:#f0d9b5;
+    background-color:$white-color;
     .fileRank {
       color: #b58863;
     }
+    &.selected {
+      background-color:blue;
+    }
+    &.move {
+     background-color:adjust-hue(darken($white-color, 10%),30%);
+    }
+    &.attack {
+       animation: attack-anim-white  1s  infinite;
+    }
   }
-  &.highlight {
-    border:1px solid #F00;
-  }
+}
 
+
+
+@keyframes attack-anim-white {
+ 0%,100% { 
+   background-color:adjust-hue(darken($white-color, 10%),30%);
+ }
+ 50% { 
+   background-color:adjust-hue(darken($white-color, 10%),-30%);
+ }
+}
+@keyframes attack-anim-black {
+ 0%,100% { 
+   background-color:adjust-hue( $black-color,30%);
+ }
+ 50% { 
+   background-color:adjust-hue( $black-color,-30%);
+ }
+}
+
+
+
+
+
+.modal {
+  background: white;
+  z-index:100;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
 }
