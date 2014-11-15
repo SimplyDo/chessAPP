@@ -34,22 +34,28 @@
   </div>
 
   <div class="game">
-    <a class="stockfish-button" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
-        <span class="iconic iconic-md" data-glyph="electric" title="stockfish move" aria-hidden="true"> </span>
-    </a>
 
     <board board="board" check="status.isCheck" checkmate="status.isCheckmate" side="status.side.name" selected="selectedSquare" moves="selectedMoves" rotate="rotateBoard"></board>
 
-    <a ng-click="rotateBoard = !rotateBoard" class="rotate-button">
-        <span class="iconic iconic-md" data-glyph="loop-circular" title="flip" aria-hidden="true"> </span>
-    </a>
 
     <div class="controls">
-      <a class="controls-previous" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
+      <a class="controls-first" ng-class="{active: historyStep > 0}" ng-click="rewindGame(0,false)">
         <span class="iconic iconic-md" data-glyph="media-step-backward" title="flip" aria-hidden="true"> </span>
       </a>
+      <a class="controls-previous" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
+        <span class="iconic iconic-md" data-glyph="media-skip-backward" title="flip" aria-hidden="true"> </span>
+      </a>
       <a class="controls-next" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(1,true)">
+        <span class="iconic iconic-md" data-glyph="media-skip-forward" title="flip" aria-hidden="true"> </span>
+      </a>
+      <a class="controls-last" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(historyLength,false)">
         <span class="iconic iconic-md" data-glyph="media-step-forward" title="flip" aria-hidden="true"> </span>
+      </a>
+      <a class="stockfish-button" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
+          <span class="iconic iconic-md" data-glyph="lightbulb" title="stockfish move" aria-hidden="true"> </span>
+      </a>
+      <a ng-click="rotateBoard = !rotateBoard" class="rotate-button">
+          <span class="iconic iconic-md" data-glyph="loop-circular" title="flip" aria-hidden="true"> </span>
       </a>
     </div>
   </div>

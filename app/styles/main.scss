@@ -74,17 +74,15 @@ body {
 }
 
 .rotate-button {
-  vertical-align:middle;
-  margin-left:10px;
+  float:right;
   &:hover {
     color:#FFF;
   }
 }
 
 .stockfish-button {
-  vertical-align:middle;
-  margin-right:10px;
   color:#333;
+  margin-left:20px;
   &.active {
     color:#AAA;
     &:hover {
@@ -96,7 +94,6 @@ body {
 
 .board {
   display:inline-block;
-  vertical-align:middle;
 }
 
 .board-rank {
@@ -113,10 +110,13 @@ body {
 
 
 .controls {
-  margin-top:15px;
+  display:block;
+  margin:15px auto 0px;
+  width:8 * $squareSize;
+  text-align:left;
 }
 
-.controls-previous, .controls-next {
+.controls-previous, .controls-next, .controls-first, .controls-last {
   color:#333;
   margin:0 10px;
   &.active {

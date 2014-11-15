@@ -7,7 +7,14 @@ Set up
 =========
 
 install dependencies:
+
+(requires ruby for sass gem)
+
 $ npm install
+$ npm install http-server -g
+$ npm install bower -g
+$ bower install
+$ gem install sass
 
 build into dist folder:
 $ gulp build
