@@ -81,7 +81,10 @@ body {
   text-align:left;
   font-weight:300;
   margin-bottom:10px;
-  &:first-letter{
+}
+
+.game-status-name {
+  &:first-letter {
     text-transform: capitalize
   }
 }
@@ -121,6 +124,19 @@ body {
 
 .stockfish-control {
   margin-left:20px;
+}
+
+
+
+
+
+.ai {
+
+}
+
+.ai-toggle {
+  margin-right:20px;
+  cursor:pointer;
 }
 
 .board-square {

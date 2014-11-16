@@ -44,6 +44,7 @@ angular.module('chessApp')
       $scope.apicallinprogress = false;
       updateUrlHistory(data.history);
       deselectSquare();
+      autoTurn($scope.status.side.name);
     };
    
     var squareHasOwnPiece = function(square) {
@@ -84,6 +85,7 @@ angular.module('chessApp')
     $scope.newGame = function(pgn) {
       console.log('new game');
       $scope.apicallinprogress = true;
+      noAi();
       gameApi.update({ pgn: pgn}, function (data) {
         assignGameData(data);
         $scope.history = data.history;
@@ -94,6 +96,7 @@ angular.module('chessApp')
     
     
     $scope.rewindGame = function(movecount, relative) {
+      noAi();
       if (!$scope.apicallinprogress) {
         console.log('rewinding/forwarding: ' + movecount);
         if (relative) {
@@ -136,6 +139,25 @@ angular.module('chessApp')
           $scope.historyStep = data.history.length;
         });
       }
+    };
+
+
+    $scope.toggleComputer = function(side) {
+      $scope.computer[side] = !$scope.computer[side];
+      autoTurn(side);
+    };
+    
+    var autoTurn = function(side) {
+      // checks if the AI is turned on for the current player and makes the turn if so
+      if ($scope.computer[side] === true && side === $scope.status.side.name) {
+        if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
+          $scope.playBestMove();
+        }
+      }
+    };
+
+    var noAi = function() {
+      $scope.computer = {white:false,black:false};
     };
 
     var deselectSquare = function() {
