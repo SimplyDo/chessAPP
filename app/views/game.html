@@ -30,7 +30,7 @@
     <div class="game-status">
       <span ng-hide="status.isCheckmate || status.isCheck" class="game-status-name">{{status.side.name}}'s turn</span>
       <span ng-show="status.isCheck" class="game-status-name">{{status.side.name}} is in check</span>
-      <span ng-show="status.isCheckmate" class="game-status-name">{{status.side.name}} is in check mate</span>
+      <span ng-show="status.isCheckmate" class="game-status-name">{{status.side.name}} is check mate</span>
       <span ng-show="status.isStalemate">Stalemate</span>
       <span class="game-status-step">{{historyStep}}/{{historyLength}}</span>
     </div>
@@ -67,12 +67,10 @@
 </div>
 <div class="ai">
   Computer plays:
-  <a class="ai-toggle white-ai-toggle" ng-click="toggleComputer('white');">
-    <span ng-show="computer.white" class="iconic" data-glyph="circle-check" title="flip" aria-hidden="true"> </span>
-    White
-  </a>
-  <a class="ai-toggle black-ai-toggle" ng-click="toggleComputer('black');">
-    <span ng-show="computer.black" class="iconic" data-glyph="circle-check" title="flip" aria-hidden="true"> </span>
-    Black
-  </a>
+  <label class="ai-toggle" for="aiwhite">
+    <input id="aiwhite" type="checkbox" ng-model="computer.white" /> White
+  </label>
+  <label class="ai-toggle" for="aiblack">
+    <input id="aiblack" type="checkbox" ng-model="computer.black" /> Black
+  </label>
 </div>

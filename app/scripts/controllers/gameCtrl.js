@@ -44,7 +44,7 @@ angular.module('chessApp')
       $scope.apicallinprogress = false;
       updateUrlHistory(data.history);
       deselectSquare();
-      autoTurn($scope.status.side.name);
+      autoTurn();
     };
    
     var squareHasOwnPiece = function(square) {
@@ -141,15 +141,13 @@ angular.module('chessApp')
       }
     };
 
+    $scope.$watchCollection('computer', function(value) {
+      autoTurn();
+    });
 
-    $scope.toggleComputer = function(side) {
-      $scope.computer[side] = !$scope.computer[side];
-      autoTurn(side);
-    };
-    
-    var autoTurn = function(side) {
+    var autoTurn = function() {
       // checks if the AI is turned on for the current player and makes the turn if so
-      if ($scope.computer[side] === true && side === $scope.status.side.name) {
+      if ($scope.computer[$scope.status.side.name]) {
         if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
           $scope.playBestMove();
         }
