@@ -15,46 +15,50 @@
   </button>
 </div>
 
+<a ng-click="newgame = true">
+  <span class="iconic" data-glyph="plus" title="New game" aria-hidden="true">New </span>
+</a>
+<a ng-click="export = true">
+  <span class="iconic" data-glyph="data-transfer-download" title="New game" aria-hidden="true"> Export</span>
+</a>
+
 <div class="game-wrapper">
-  <a ng-click="newgame = true">
-    <span class="iconic" data-glyph="plus" title="New game" aria-hidden="true">New </span>
-  </a>
-  <a ng-click="export = true">
-    <span class="iconic" data-glyph="data-transfer-download" title="New game" aria-hidden="true"> Export</span>
-  </a>
-  <div class="history">
-    <h2 class="history-title" ng-show="historyLength > 0">
-      <span class="history-step">{{historyStep}}/{{historyLength}}</span>
-    </h2>
-    <ul class="history-list">
-      <li ng-repeat="entry in history track by $index" class="history-list-entry" ng-class="{'history-list-entry-active': $index == historyStep-1}">
-      <a ng-click="rewindGame($index+1,false)" class="history-list-entry-link">{{entry}}</a>
-      </li>
-    </ul>
-  </div>
+  
 
   <div class="game">
 
+    <div class="game-status">
+      <span ng-hide="status.isCheckmate || status.isCheck">{{status.side.name}}'s turn</span>
+      <span ng-show="status.isCheck">{{status.side.name}} is in check</span>
+      <span ng-show="status.isCheckmate">{{status.side.name}} is in check mate</span>
+      <span class="game-status-step">{{historyStep}}/{{historyLength}}</span>
+    </div>
     <board board="board" check="status.isCheck" checkmate="status.isCheckmate" side="status.side.name" selected="selectedSquare" moves="selectedMoves" rotate="rotateBoard"></board>
-
+    <div class="history">
+      <ul class="history-list">
+        <li ng-repeat="entry in history track by $index" class="history-list-entry" ng-class="{'history-list-entry-active': $index == historyStep-1}">
+        <a ng-click="rewindGame($index+1,false)" class="history-list-entry-link">{{entry}}</a>
+        </li>
+      </ul>
+    </div>
 
     <div class="controls">
-      <a class="controls-first" ng-class="{active: historyStep > 0}" ng-click="rewindGame(0,false)">
+      <a class="control" ng-class="{active: historyStep > 0}" ng-click="rewindGame(0,false)">
         <span class="iconic iconic-md" data-glyph="media-step-backward" title="flip" aria-hidden="true"> </span>
       </a>
-      <a class="controls-previous" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
+      <a class="control" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
         <span class="iconic iconic-md" data-glyph="media-skip-backward" title="flip" aria-hidden="true"> </span>
       </a>
-      <a class="controls-next" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(1,true)">
+      <a class="control" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(1,true)">
         <span class="iconic iconic-md" data-glyph="media-skip-forward" title="flip" aria-hidden="true"> </span>
       </a>
-      <a class="controls-last" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(historyLength,false)">
+      <a class="control" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(historyLength,false)">
         <span class="iconic iconic-md" data-glyph="media-step-forward" title="flip" aria-hidden="true"> </span>
       </a>
-      <a class="stockfish-button" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
+      <a class="control stockfish-control" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
           <span class="iconic iconic-md" data-glyph="lightbulb" title="stockfish move" aria-hidden="true"> </span>
       </a>
-      <a ng-click="rotateBoard = !rotateBoard" class="rotate-button">
+      <a ng-click="rotateBoard = !rotateBoard" class="control rotate-control">
           <span class="iconic iconic-md" data-glyph="loop-circular" title="flip" aria-hidden="true"> </span>
       </a>
     </div>

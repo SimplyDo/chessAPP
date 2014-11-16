@@ -1,10 +1,4 @@
-
 <div class="board">
-  <div class="board-status">
-    <span ng-hide="checkmate || check">{{side}}'s turn</span>
-    <span ng-show="check">{{side}} is in check</span>
-    <span ng-show="checkmate">{{side}} is in check mate</span>
-  </div>
   <div ng-if="!rotate">
     <div ng-repeat="rank in ranks" ng-init="rankNumber = 8-$index" class="board-rank">
       <span ng-init="fileLetter = fileLabels[$index]" ng-repeat="square in rank track by $index" class="board-square {{square.color}} {{square.highlight}}" ng-click="clickSquare(fileLetter, rankNumber);">

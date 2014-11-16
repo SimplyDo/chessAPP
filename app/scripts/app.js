@@ -15,14 +15,6 @@ angular.module('chessApp', [
         templateUrl: 'views/game.html',
         controller: 'gameCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'textCtrl'
-      })
-      .when('/api', {
-        templateUrl: 'views/api.html',
-        controller: 'textCtrl'
-      })
       .otherwise({
         redirectTo: '/game'
       });

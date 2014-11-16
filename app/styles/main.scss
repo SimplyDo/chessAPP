@@ -14,33 +14,26 @@ body {
 }
 
 .game-wrapper {
+  text-align:center;
 }
 
 .game {
-  text-align:center;
   user-select: none;
+  margin:0 auto;
+  width: 9 * $squareSize;
 }
 
 
 .history {
-  position:fixed;
-  right:0;
-  top:0;
-  bottom:0;
+  background-color:#333;
+  float:right;
+  text-align:left;
+  vertical-align:top;
+  width: $squareSize;
+  height: 8 * $squareSize;
   overflow:auto;
 }
 
-.history-title {
-  font-size:0.9em;
-  padding:10px 10px;
-  margin:0px;
-  color:#AAA;
-  font-weight:300;
-  text-align:right;
-}
-
-.history-step {
-}
 
 .history-list {
   list-style:none;
@@ -56,11 +49,9 @@ body {
 
 .history-list-entry-link {
   display:block;
-  text-align:right;
   padding:3px 10px;
   color:#999;
   cursor:pointer;
-  text-align:right;
   &:hover {
     color:#FFF;
   }
@@ -73,34 +64,21 @@ body {
   }
 }
 
-.rotate-button {
-  float:right;
-  &:hover {
-    color:#FFF;
-  }
-}
-
-.stockfish-button {
-  color:#333;
-  margin-left:20px;
-  &.active {
-    color:#AAA;
-    &:hover {
-      color:#FFF;
-    }
-  }
-}
 
 
 .board {
   display:inline-block;
+  width: 8 * $squareSize;
+  vertical-align:top;
 }
 
 .board-rank {
   height: $squareSize;
+  width: 8 * $squareSize;
 }
 
-.board-status {
+.game-status {
+  text-align:left;
   font-weight:300;
   margin-bottom:10px;
   &:first-letter{
@@ -108,23 +86,41 @@ body {
   }
 }
 
+.game-status-step {
+  font-size:0.8em;
+  color: #999;
+  float:right;
+}
+
 
 .controls {
   display:block;
-  margin:15px auto 0px;
+  margin-top:15px;
   width:8 * $squareSize;
   text-align:left;
 }
 
-.controls-previous, .controls-next, .controls-first, .controls-last {
+.control {
+  vertical-align:top;
   color:#333;
-  margin:0 10px;
+  margin:0 10px 0 0;
   &.active {
     color:#AAA;
     &:hover {
       color:#FFF;
     }
   }
+}
+
+.rotate-control {
+  float:right;
+  &:hover {
+    color:#FFF;
+  }
+}
+
+.stockfish-control {
+  margin-left:20px;
 }
 
 .board-square {
