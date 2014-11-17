@@ -15,12 +15,23 @@
   </button>
 </div>
 
-<a ng-click="newgame = true">
-  <span class="iconic" data-glyph="plus" title="New game" aria-hidden="true">New </span>
-</a>
-<a ng-click="export = true">
-  <span class="iconic" data-glyph="data-transfer-download" title="New game" aria-hidden="true"> Export</span>
-</a>
+<div class="navigation">
+  <a class="navigation-entry icon-plus-circle" ng-click="newgame = true">
+    New game
+  </a>
+  <a class="navigation-entry icon-share" ng-click="export = true">
+    Share
+  </a>
+  <span class="navigation-entry ai">
+    Computer plays:
+    <label class="ai-toggle" for="aiwhite">
+      <input id="aiwhite" type="checkbox" ng-model="computer.white" /> White
+    </label>
+    <label class="ai-toggle" for="aiblack">
+      <input id="aiblack" type="checkbox" ng-model="computer.black" /> Black
+    </label>
+  </span>
+</div>
 
 <div class="game-wrapper">
   
@@ -45,32 +56,23 @@
 
     <div class="controls">
       <a class="control" ng-class="{active: historyStep > 0}" ng-click="rewindGame(0,false)">
-        <span class="iconic iconic-md" data-glyph="media-step-backward" title="flip" aria-hidden="true"> </span>
+        <span class="icon-double-arrow-left"></span>
       </a>
       <a class="control" ng-class="{active: historyStep > 0}" ng-click="rewindGame(-1,true)">
-        <span class="iconic iconic-md" data-glyph="media-skip-backward" title="flip" aria-hidden="true"> </span>
+        <span class="icon-arrow-left"></span>
       </a>
       <a class="control" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(1,true)">
-        <span class="iconic iconic-md" data-glyph="media-skip-forward" title="flip" aria-hidden="true"> </span>
+        <span class="icon-arrow-right"></span>
       </a>
       <a class="control" ng-class="{active: historyStep < historyLength}" ng-click="rewindGame(historyLength,false)">
-        <span class="iconic iconic-md" data-glyph="media-step-forward" title="flip" aria-hidden="true"> </span>
+        <span class="icon-double-arrow-right"></span>
       </a>
       <a class="control stockfish-control" ng-class="{active: !status.isCheckmate && !apicallinprogress}" ng-click="playBestMove();">
-          <span class="iconic iconic-md" data-glyph="lightbulb" title="stockfish move" aria-hidden="true"> </span>
+          <span class="icon-bulb"></span>
       </a>
       <a ng-click="rotateBoard = !rotateBoard" class="control rotate-control">
-          <span class="iconic iconic-md" data-glyph="loop-circular" title="flip" aria-hidden="true"> </span>
+          <span class="icon-rotate"></span>
       </a>
     </div>
   </div>
-</div>
-<div class="ai">
-  Computer plays:
-  <label class="ai-toggle" for="aiwhite">
-    <input id="aiwhite" type="checkbox" ng-model="computer.white" /> White
-  </label>
-  <label class="ai-toggle" for="aiblack">
-    <input id="aiblack" type="checkbox" ng-model="computer.black" /> Black
-  </label>
 </div>
