@@ -12,7 +12,6 @@ install dependencies:
 
 ```sh
 npm install
-npm install http-server -g
 npm install bower -g
 bower install
 gem install sass
@@ -26,6 +25,6 @@ gulp
 Start server
 ==========
 
-```
-http-server . # (in dist after gulp build)
+```sh
+node server.js
 ```

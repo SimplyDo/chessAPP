@@ -2,7 +2,12 @@
   "name": "chessapp",
   "author": "Alexander Kohlhofer <alexander@kohlhofer.com>",
   "version": "0.0.5",
-  "dependencies": {},
+  "dependencies": {
+    "http": "0.0.0",
+    "util": "~0.10.3",
+    "paperboy": "0.0.5",
+    "path": "~0.4.9"
+  },
   "devDependencies": {
     "gulp": "~3.8.10",
     "gulp-rename": "~1.2.0",
@@ -16,8 +21,7 @@
     "gulp-notify": "~2.0.1",
     "gulp-uglify": "~1.0.1",
     "gulp-jshint": "~1.9.0",
-    "gulp-autoprefixer": "~1.0.1",
-    "http-server": "~0.7.3"
+    "gulp-autoprefixer": "~1.0.1"
   },
   "engines": {
     "node": ">=0.8.0"
