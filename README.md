@@ -20,7 +20,7 @@ gem install sass
 
 build into dist folder:
 ```sh
-gulp build
+gulp
 ```
 
 Start server
