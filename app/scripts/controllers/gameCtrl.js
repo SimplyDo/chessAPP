@@ -5,16 +5,17 @@ angular.module('chessApp')
     
     $scope.rotateBoard = false;
 
+    var apiRoot = 'http://104.236.6.69:8080'
 
-    var gameApi =  $resource('http://104.236.6.69:8080/game/:movecount', {}, {
-      update: { method: 'POST' }
-      });
-    
-    var moveApi =  $resource('http://104.236.6.69:8080/move/:move', {}, {
+    var gameApi =  $resource(apiRoot + '/game/:movecount', {}, {
       update: { method: 'POST' }
       });
 
-    var bestMoveApi =  $resource('http://104.236.6.69:8080/bestmove', {}, {
+    var moveApi =  $resource(apiRoot + '/move/:move', {}, {
+      update: { method: 'POST' }
+      });
+
+    var bestMoveApi =  $resource(apiRoot + '/bestmove', {}, {
       update: { method: 'POST' }
       });
     
