@@ -148,9 +148,11 @@ angular.module('chessApp')
 
     var autoTurn = function() {
       // checks if the AI is turned on for the current player and makes the turn if so
-      if ($scope.computer[$scope.status.side.name]) {
-        if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
-          $scope.playBestMove();
+      if ($scope.status) {
+        if ($scope.computer[$scope.status.side.name]) {
+          if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
+            $scope.playBestMove();
+          }
         }
       }
     };

@@ -2,6 +2,7 @@
 
 angular.module('chessApp', [
   'ngRoute',
+  'ngTouch',
   'ngResource',
   'chessBoardDirective'
 ])
