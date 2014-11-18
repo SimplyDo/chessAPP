@@ -2,6 +2,7 @@
 @import 'icons';
 
 $squareSize: 60px;
+$boardLegendSize: 20px;
 $pieceSize: 55px;
 
 $white-color: #f0d9b5;
@@ -21,14 +22,14 @@ body {
 .game {
   user-select: none;
   margin:0 auto;
-  width: 9 * $squareSize;
+  width: 9 * $squareSize + $boardLegendSize;
 }
 
 
 .history {
-  background-color:#333;
   float:right;
-  text-align:left;
+  font-size:0.8em;
+  text-align:right;
   vertical-align:top;
   width: $squareSize;
   height: 8 * $squareSize;
@@ -50,7 +51,7 @@ body {
 
 .history-list-entry-link {
   display:block;
-  padding:3px 10px;
+  padding:3px 5px;
   color:#999;
   cursor:pointer;
   &:hover {
@@ -69,16 +70,35 @@ body {
 
 .board {
   display:inline-block;
-  width: 8 * $squareSize;
+  width: 8 * $squareSize + $boardLegendSize;
   vertical-align:top;
 }
 
 .board-rank {
   height: $squareSize;
-  width: 8 * $squareSize;
+  width: 8 * $squareSize + $boardLegendSize;
 }
 
+.board-label {
+  display:inline-block;
+  font-size:0.7em;
+  font-weight:300;
+  color:#666;
+}
+
+.rank-label {
+  //width: $boardLegendSize;
+}
+
+.file-label {
+  width: $squareSize;
+  height: $boardLegendSize;
+  line-height: $boardLegendSize;
+}
+
+
 .game-status {
+  width: 8 * $squareSize;
   text-align:left;
   font-weight:300;
   margin-bottom:10px;
@@ -161,11 +181,6 @@ body {
   position:relative;
   img {
     width:$pieceSize;
-  }
-  &:hover {
-    .fileRank {
-      display:block;
-    }
   }
   .fileRank {
     display:none;

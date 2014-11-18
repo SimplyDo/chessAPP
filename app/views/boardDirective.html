@@ -5,6 +5,10 @@
         <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
         <img ng-src="{{art[square.piece]}}" ng-if="square.piece != false" />
       </span>
+      <span class="board-label rank-label">{{rankNumber}}</span>
+    </div>
+    <div>
+      <span class="board-label file-label" ng-repeat="file in ['A','B','C','D','E','F','G','H']">{{file}}</span>
     </div>
   </div>
 
@@ -14,6 +18,10 @@
         <span class="fileRank">{{fileLetter}}{{rankNumber}}</span>
         <img ng-src="{{art[square.piece]}}" ng-if="square.piece != false" />
       </span>
+      <span class="board-label rank-label">{{rankNumber}}</span>
+    </div>
+    <div>
+      <span class="board-label file-label" ng-repeat="file in ['A','B','C','D','E','F','G','H'] | reverse">{{file}}</span>
     </div>
   </div>
 </div>
