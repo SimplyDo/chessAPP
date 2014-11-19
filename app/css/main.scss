@@ -1,9 +1,9 @@
 @import '../bower_components/reset-scss/reset.scss';
 @import 'icons';
 
-$squareSize: 60px;
+$squareSize: 50px;
 $boardLegendSize: 20px;
-$pieceSize: 55px;
+$pieceSize: 45px;
 
 $white-color: #f0d9b5;
 $black-color: #b58863;
@@ -49,6 +49,7 @@ body {
   font-weight:300;
 }
 
+
 .history-list-entry-link {
   display:block;
   padding:3px 5px;
@@ -79,18 +80,28 @@ body {
   width: 8 * $squareSize + $boardLegendSize;
 }
 
+
+.board-labels {
+}
+
 .board-label {
-  display:inline-block;
-  font-size:0.7em;
+  display:block;
+  margin:0px;
+  font-size:10px;
   font-weight:300;
   color:#666;
 }
 
 .rank-label {
   //width: $boardLegendSize;
+  height: $squareSize;
+  line-height: $squareSize;
+  width: $boardLegendSize;
+  float:right; 
 }
 
 .file-label {
+  float:left; 
   width: $squareSize;
   height: $boardLegendSize;
   line-height: $boardLegendSize;
@@ -127,12 +138,19 @@ body {
 
 .control {
   vertical-align:top;
+  display:inline-block;
+  position:relative;
+  padding:5px 5px 3px 5px;
+  border:1px solid #333;
+  border-radius:3px;
   color:#333;
   margin:0 10px 0 0;
   &.active {
     color:#AAA;
+    border:1px solid #999;
     &:hover {
       color:#FFF;
+      border:1px solid #EEE;
     }
   }
 }
@@ -140,8 +158,11 @@ body {
 .rotate-control {
   float:right;
   color:#AAA;
+  border:1px solid #999;
+  margin-right:0px;
   &:hover {
     color:#FFF;
+    border:1px solid #EEE;
   }
 }
 
@@ -174,22 +195,46 @@ body {
 
 .board-square {
   display:inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $pieceSize $pieceSize;
   width:$squareSize;
   height:$squareSize;
-  text-align:center;
-  vertical-align:middle;
-  position:relative;
-  img {
-    width:$pieceSize;
+  &.p-piece {
+    background-image: url('../images/pieces/Chess_pdt45.svg');
   }
-  .fileRank {
-    display:none;
-    position:absolute;
-    bottom:3px;
-    right:3px;
-    font-size:0.7em;
-    text-transform:uppercase;
-    opacity:0.7;
+  &.P-piece {
+    background-image: url('../images/pieces/Chess_plt45.svg');
+  }
+  &.b-piece {
+    background-image: url('../images/pieces/Chess_bdt45.svg');
+  }
+  &.B-piece {
+    background-image: url('../images/pieces/Chess_blt45.svg');
+  }
+  &.k-piece {
+    background-image: url('../images/pieces/Chess_kdt45.svg');
+  }
+  &.K-piece {
+    background-image: url('../images/pieces/Chess_klt45.svg');
+  }
+  &.n-piece {
+    background-image: url('../images/pieces/Chess_ndt45.svg');
+  }
+  &.N-piece {
+    background-image: url('../images/pieces/Chess_nlt45.svg');
+  }
+  &.q-piece {
+    background-image: url('../images/pieces/Chess_qdt45.svg');
+  }
+  &.Q-piece {
+    background-image: url('../images/pieces/Chess_qlt45.svg');
+  }
+  &.r-piece {
+    background-image: url('../images/pieces/Chess_rdt45.svg');
+  }
+  &.R-piece {
+    background-image: url('../images/pieces/Chess_rlt45.svg');
   }
   &.black {
     background-color:$black-color;
