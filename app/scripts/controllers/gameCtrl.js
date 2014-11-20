@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('chessApp')
-  .controller('gameCtrl', function ($location,$scope,$resource,$routeParams) {
+  .controller('gameCtrl', function ($cookieStore,$location,$scope,$resource,$routeParams) {
     
-    $scope.rotateBoard = false;
+    $scope.rotateBoard = $cookieStore.get('rotateBoard');
 
     var apiRoot = 'http://dxc4.com:8080'
 
@@ -140,6 +140,11 @@ angular.module('chessApp')
           $scope.historyStep = data.history.length;
         });
       }
+    };
+
+    $scope.rotate = function() {
+      $scope.rotateBoard = !$scope.rotateBoard;
+      $cookieStore.put('rotateBoard', $scope.rotateBoard);
     };
 
     $scope.$watchCollection('computer', function(value) {

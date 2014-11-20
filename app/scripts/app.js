@@ -4,6 +4,7 @@ angular.module('chessApp', [
   'ngRoute',
   'ngTouch',
   'ngResource',
+  'ngCookies',
   'chessBoardDirective'
 ])
   .config(function ($routeProvider) {
