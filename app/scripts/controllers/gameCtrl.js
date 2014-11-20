@@ -45,8 +45,36 @@ angular.module('chessApp')
       $scope.apicallinprogress = false;
       updateUrlHistory(data.history);
       deselectSquare();
-      autoTurn();
+      autoTurn($scope.status.side.name);
+      popUpMessage($scope.status);
     };
+    
+    var popUpMessage = function(status) {
+      if (status.isCheck) {
+        // sweetAlert({
+        //   title: status.side.name + " is in check!",
+        //   timer: 2000,
+        //   type: "warning"
+        // });
+      } else if (status.isCheckmate) {
+        sweetAlert({
+          title: status.side.name + " is checkmate!",
+          type: "success"
+        });
+      } else if (status.isRepetition) {
+        sweetAlert({
+          title: "Repetition?",
+          type: "warning"
+        });
+      } else if (status.isStalemate) {
+        sweetAlert({
+          title: "Stalemate!",
+          type: "warning"
+        });
+
+      }
+
+    }
    
     var squareHasOwnPiece = function(square) {
       var move;
@@ -148,13 +176,13 @@ angular.module('chessApp')
     };
 
     $scope.$watchCollection('computer', function() {
-      autoTurn();
+      autoTurn($scope.status.side.name);
     });
 
-    var autoTurn = function() {
+    var autoTurn = function(side) {
       // checks if the AI is turned on for the current player and makes the turn if so
       if ($scope.status) {
-        if ($scope.computer === $scope.status.side.name) {
+        if ($scope.computer === side) {
           if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
             $scope.playBestMove();
           }
