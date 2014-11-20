@@ -147,14 +147,14 @@ angular.module('chessApp')
       $cookieStore.put('rotateBoard', $scope.rotateBoard);
     };
 
-    $scope.$watchCollection('computer', function(value) {
+    $scope.$watchCollection('computer', function() {
       autoTurn();
     });
 
     var autoTurn = function() {
       // checks if the AI is turned on for the current player and makes the turn if so
       if ($scope.status) {
-        if ($scope.computer[$scope.status.side.name]) {
+        if ($scope.computer === $scope.status.side.name) {
           if (!$scope.status.isCheckmate && !$scope.status.isRepetition && !$scope.status.isStalemate) {
             $scope.playBestMove();
           }
@@ -163,7 +163,7 @@ angular.module('chessApp')
     };
 
     var noAi = function() {
-      $scope.computer = {white:false,black:false};
+      $scope.computer = 'none';
     };
 
     var deselectSquare = function() {
@@ -197,5 +197,6 @@ angular.module('chessApp')
     });
 
     $scope.newGame($routeParams.urlmoves);
+    noAi();
 
   });

@@ -25,10 +25,13 @@
   <span class="navigation-entry ai">
     Computer plays:
     <label class="ai-toggle" for="aiwhite">
-      <input id="aiwhite" type="checkbox" ng-model="computer.white" /> White
+      <input id="aiwhite" ng-model="computer" value="white" type="radio"> White
     </label>
     <label class="ai-toggle" for="aiblack">
-      <input id="aiblack" type="checkbox" ng-model="computer.black" /> Black
+      <input id="aiblack" ng-model="computer" value="black" type="radio"> Black
+    </label>
+    <label class="ai-toggle" for="ainone">
+      <input id="ainone" ng-model="computer" value="none" type="radio"> None
     </label>
   </span>
 </div>
