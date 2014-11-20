@@ -1,7 +1,8 @@
 ChessClient
 ========
 
-A rich chess client designed to demonstrate the chessAPI.
+A rich chess client designed to demonstrate the chessAPI at http://dxc4.com:8080
+Demo: http://dxc4.com/
 
 Set up
 =========

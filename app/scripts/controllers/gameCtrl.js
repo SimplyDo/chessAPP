@@ -5,7 +5,7 @@ angular.module('chessApp')
     
     $scope.rotateBoard = false;
 
-    var apiRoot = 'http://104.236.6.69:8080'
+    var apiRoot = 'http://dxc4.com:8080'
 
     var gameApi =  $resource(apiRoot + '/game/:movecount', {}, {
       update: { method: 'POST' }
