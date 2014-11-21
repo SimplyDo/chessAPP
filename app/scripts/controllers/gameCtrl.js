@@ -59,21 +59,22 @@ angular.module('chessApp')
       } else if (status.isCheckmate) {
         sweetAlert({
           title: status.side.name + " is checkmate!",
-          type: "success"
+          type: "success",
+          confirmButtonColor: "#69F"
         });
       } else if (status.isRepetition) {
-        sweetAlert({
-          title: "Repetition?",
-          type: "warning"
-        });
+        // sweetAlert({
+        //   title: "Repetition",
+        //   type: "warning",
+        //   timer: 2000,
+        // });
       } else if (status.isStalemate) {
         sweetAlert({
           title: "Stalemate!",
-          type: "warning"
+          type: "warning",
+          confirmButtonColor: "#69F"
         });
-
       }
-
     }
    
     var squareHasOwnPiece = function(square) {
