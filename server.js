@@ -5,7 +5,7 @@ var paperboy = require('paperboy'),
     path = require('path');
 
 var webroot = path.join(__dirname, 'dist'),
-    port = 80;
+    port = process.env.CHESS_APP_PORT;
 
 http.createServer(function(req, res) {
   var ip = req.connection.remoteAddress;
