@@ -9,7 +9,7 @@ Set up
 
 install dependencies:
 
-(requires ruby for sass gem)
+(requires ruby for sass gem and node/npm)
 
 ```sh
 npm install
