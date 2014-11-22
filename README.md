@@ -1,8 +1,8 @@
-ChessClient
+dxc4.com Demo Client App
 ========
 
-A rich chess client designed to demonstrate the chessAPI at http://dxc4.com:8080
-Demo: http://dxc4.com/
+A rich chess client using the dxc4 chess api at http://api.dxc4.com
+See it in action at: http://dxc4.com/
 
 Set up
 =========
