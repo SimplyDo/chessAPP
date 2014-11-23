@@ -5,7 +5,7 @@ angular.module('chessApp')
     
     $scope.rotateBoard = $cookieStore.get('rotateBoard');
 
-    var apiRoot = 'http://api.dxc4.com'
+    var apiRoot = 'http://api.dxc4.com';
 
     var gameApi =  $resource(apiRoot + '/game/:movecount', {}, {
       update: { method: 'POST' }
@@ -58,9 +58,9 @@ angular.module('chessApp')
         // });
       } else if (status.isCheckmate) {
         sweetAlert({
-          title: status.side.name + " is checkmate!",
-          type: "success",
-          confirmButtonColor: "#69F"
+          title: status.side.name + ' is checkmate!',
+          type: 'success',
+          confirmButtonColor: '#69F'
         });
       } else if (status.isRepetition) {
         // sweetAlert({
@@ -70,12 +70,12 @@ angular.module('chessApp')
         // });
       } else if (status.isStalemate) {
         sweetAlert({
-          title: "Stalemate!",
-          type: "warning",
-          confirmButtonColor: "#69F"
+          title: 'Stalemate!',
+          type: 'warning',
+          confirmButtonColor: '#69F'
         });
       }
-    }
+    };
    
     var squareHasOwnPiece = function(square) {
       var move;
@@ -203,7 +203,7 @@ angular.module('chessApp')
 
     $scope.$on('squareClicked', function(event, data) { 
       var square = data;
-      if ($scope.selectedSquare && square.rank == $scope.selectedSquare.rank && square.file == $scope.selectedSquare.file) {
+      if ($scope.selectedSquare && square.rank === $scope.selectedSquare.rank && square.file === $scope.selectedSquare.file) {
         deselectSquare();
         console.log('square deselected');
         return;

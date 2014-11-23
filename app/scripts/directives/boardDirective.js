@@ -79,7 +79,6 @@ angular.module('chessBoardDirective',[])
       };
       
       var updateHighlights = function(selected) {
-        var dest;
         if ($scope.ranks) {
           for (var r = 0; r < 8; r++) {
             for (var f = 0; f < 8; f++) {
@@ -93,7 +92,7 @@ angular.module('chessBoardDirective',[])
             var dest;
             for (var i = 0; i < $scope.moves.length; i++) {
               dest = $scope.moves[i].dest;
-              if (dest.piece == null) {
+              if (dest.piece === null) {
                 $scope.ranks[8-dest.rank][fileMap[dest.file]].highlight = 'move';
               } else {
                 $scope.ranks[8-dest.rank][fileMap[dest.file]].highlight = 'attack';
@@ -105,12 +104,12 @@ angular.module('chessBoardDirective',[])
 
       var updateBoard = function (boardData) {
         var file, rank, piece, notation;
-        if (boardData != undefined) {
+        if (boardData !== undefined) {
           for (var i = 0; i < boardData.length; i++) {
             file = fileMap[boardData[i].file];
             rank = 8-boardData[i].rank;
             piece = boardData[i].piece;
-            if (piece == null) {
+            if (piece === null) {
               $scope.ranks[rank][file].piece = false;
             } else {
               notation = notationMap[piece.side.name][piece.type];
