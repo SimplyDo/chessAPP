@@ -116,7 +116,6 @@ angular.module('chessBoardDirective',[])
               $scope.ranks[rank][file].piece = notation;
             }
           }
-          console.log('Board updated');
           $scope.fen = exportFen();
         }
       };
@@ -145,7 +144,6 @@ angular.module('chessBoardDirective',[])
             fen = fen + '/';
           }
         }
-        console.log('Fen generated: ' + fen);
         return fen;
       };
       

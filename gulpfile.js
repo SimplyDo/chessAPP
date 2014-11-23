@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     del = require('del');
@@ -19,13 +18,13 @@ gulp.task('default', function() {
 gulp.task('watch', function() {
 
   // Watch .scss files
-  gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/**/*.scss', ['styles']);
 
   // Watch .html files
   gulp.watch('app/**/*.html', ['move']);
 
   // Watch .js files
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
+  gulp.watch('app/**/*.js', ['scripts']);
 
   // Watch image files
   gulp.watch('app/images/**/*', ['images']);
@@ -55,8 +54,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/css'))
-    .pipe(notify({ message: 'Styles task complete' }));
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('scripts', function() {
@@ -66,15 +64,13 @@ gulp.task('scripts', function() {
     .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(notify({ message: 'Scripts task complete' }));
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('images', function() {
   return gulp.src('app/images/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest('dist/images'))
-    .pipe(notify({ message: 'Images task complete' }));
+    .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('clean', function(cb) {

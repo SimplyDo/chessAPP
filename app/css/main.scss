@@ -2,13 +2,16 @@
 @import '../bower_components/sweetalert/lib/sweet-alert.scss';
 @import 'icons';
 
-$squareSize: 50px;
-$boardLegendSize: 20px;
-$pieceSize: 45px;
+$square-size: 60px;
+$board-legend-size: 20px;
+$piece-size: 58px;
+
+$board-width: 8 * $square-size;
+$board-with-legend-width: $board-width + $board-legend-size;
+$game-width: $board-width + $square-size + $board-legend-size;
 
 $white-color: #f0d9b5;
 $black-color: #b58863;
-
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -23,7 +26,7 @@ body {
 .game {
   user-select: none;
   margin:0 auto;
-  width: 9 * $squareSize + $boardLegendSize;
+  width: $game-width;
 }
 
 
@@ -32,8 +35,8 @@ body {
   font-size:0.8em;
   text-align:right;
   vertical-align:top;
-  width: $squareSize;
-  height: 8 * $squareSize;
+  width: $square-size;
+  height: $board-width;
   overflow:auto;
 }
 
@@ -72,13 +75,12 @@ body {
 
 .board {
   display:inline-block;
-  width: 8 * $squareSize + $boardLegendSize;
+  width: $board-with-legend-width;
   vertical-align:top;
 }
 
 .board-rank {
-  height: $squareSize;
-  width: 8 * $squareSize + $boardLegendSize;
+  height: $square-size;
 }
 
 
@@ -94,31 +96,26 @@ body {
 }
 
 .rank-label {
-  //width: $boardLegendSize;
-  height: $squareSize;
-  line-height: $squareSize;
-  width: $boardLegendSize;
+  line-height: $square-size;
+  width: $board-legend-size;
   float:right; 
 }
 
 .file-label {
   float:left; 
-  width: $squareSize;
-  height: $boardLegendSize;
-  line-height: $boardLegendSize;
+  width: $square-size;
+  height: $board-legend-size;
+  line-height: $board-legend-size;
 }
 
 
 .game-status {
-  width: 8 * $squareSize;
+  width: $board-width;
   text-align:left;
   font-weight:300;
   margin-bottom:10px;
-}
-
-.game-status-name {
   &:first-letter {
-    text-transform: capitalize
+    text-transform: capitalize;
   }
 }
 
@@ -132,7 +129,7 @@ body {
 .controls {
   display:block;
   margin-top:15px;
-  width:8 * $squareSize;
+  width:$board-width;
   text-align:left;
   font-size:1.2em;
 }
@@ -173,14 +170,32 @@ body {
 
 
 .navigation {
-  margin:10px 10px 20px 10px;
-  font-weight:400;
+  margin-bottom:30px;
+  font-weight:300;
   font-size:0.9em;
-  color:#DDD;
+  color:#000;
+  background-color:#EEE;
+  text-align:center;
 }
 
 .navigation-entry {
-  margin-right:15px;
+  display:inline-block;
+  padding:0px 9px 0px 7px;
+  height:40px;
+  line-height:40px;
+  i {
+    font-size:1.2em;
+    vertical-align:-3px;
+    margin-right:1px;
+  }
+}
+
+a.navigation-entry {
+  cursor:pointer;
+  &:hover {
+    color:#000;
+    background-color:#6AF;
+  }
 }
 
 
@@ -198,9 +213,9 @@ body {
   display:inline-block;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: $pieceSize $pieceSize;
-  width:$squareSize;
-  height:$squareSize;
+  background-size: $piece-size $piece-size;
+  width:$square-size;
+  height:$square-size;
   &.p-piece {
     background-image: url('../images/pieces/Chess_pdt45.svg');
   }

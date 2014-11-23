@@ -1,39 +1,48 @@
+<div ng-show="aiconfig" class="modal">
+  <div class="ai">
+    Computer plays:
+    <label class="ai-toggle" for="aiwhite">
+      <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="aiconfig = false"> White
+    </label>
+    <label class="ai-toggle" for="aiblack">
+      <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="aiconfig = false"> Black
+    </label>
+    <label class="ai-toggle" for="ainone">
+      <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="aiconfig = false"> None
+    </label>
+  </div>
+  <button ng-click="aiconfig = false">
+    Cancel
+  </button>
+</div>
+
 <div ng-show="newgame" class="modal">
   <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
   <button ng-click="newgame = false; newGame(pgn); pgn = ''">
     <span class="iconic" data-glyph="check" title="New game" aria-hidden="true"> New game</span>
   </button>
   <button ng-click="newgame = false">
-    <span class="iconic" data-glyph="circle-x" title="Cancel" aria-hidden="true"> Cancel</span>
+    Cancel
   </button>
 </div>
 
 <div ng-show="export" class="modal">
   <textarea rows="5">{{exportPgn}}</textarea>
   <button ng-click="export = false">
-    <span class="iconic" data-glyph="check" title="Close" aria-hidden="true"> CLose</span>
+    Cancel
   </button>
 </div>
 
 <div class="navigation">
-  <a class="navigation-entry icon-plus-circle" ng-click="newgame = true">
-    New game
+  <a class="navigation-entry" ng-click="newgame = true">
+    <i class="icon-plus-circle"></i> New
   </a>
-  <a class="navigation-entry icon-share" ng-click="export = true">
-    Share
+  <a class="navigation-entry" ng-click="export = true">
+    <i class="icon-share"></i> Share
   </a>
-  <span class="navigation-entry ai">
-    Computer plays:
-    <label class="ai-toggle" for="aiwhite">
-      <input id="aiwhite" ng-model="computer" value="white" type="radio"> White
-    </label>
-    <label class="ai-toggle" for="aiblack">
-      <input id="aiblack" ng-model="computer" value="black" type="radio"> Black
-    </label>
-    <label class="ai-toggle" for="ainone">
-      <input id="ainone" ng-model="computer" value="none" type="radio"> None
-    </label>
-  </span>
+  <a class="navigation-entry" ng-click="aiconfig = true">
+    <i class="icon-ai"></i> AI ({{computer}})
+  </a>
 </div>
 
 <div class="game-wrapper">
@@ -42,11 +51,11 @@
   <div class="game">
 
     <div class="game-status">
-      <span ng-hide="status.isCheckmate || status.isCheck" class="game-status-name">{{status.side.name}}'s turn</span>
-      <span ng-show="status.isCheck" class="game-status-name">{{status.side.name}} is in check</span>
-      <span ng-show="status.isCheckmate" class="game-status-name">{{status.side.name}} is check mate</span>
+      <span ng-hide="status.isCheckmate || status.isCheck">{{status.side.name}}'s turn</span>
+      <span ng-show="status.isCheck">{{status.side.name}} is in check</span>
+      <span ng-show="status.isCheckmate">{{status.side.name}} is check mate</span>
       <span ng-show="status.isStalemate">Stalemate</span>
-      <span class="game-status-step">{{historyStep}}/{{historyLength}}</span>
+      <span class="game-status-step" ng-show="historyLength > 0"><span ng-show="historyStep < historyLength">{{historyStep}}/</span>{{historyLength}} half moves</span>
     </div>
     <board board="board" check="status.isCheck" checkmate="status.isCheckmate" side="status.side.name" selected="selectedSquare" moves="selectedMoves" rotate="rotateBoard"></board>
     <div class="history">
