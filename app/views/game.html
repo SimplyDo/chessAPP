@@ -1,46 +1,48 @@
-<div ng-show="aiconfig" class="modal">
-  <div class="ai">
-    Computer plays:
-    <label class="ai-toggle" for="aiwhite">
-      <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="aiconfig = false"> White
-    </label>
-    <label class="ai-toggle" for="aiblack">
-      <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="aiconfig = false"> Black
-    </label>
-    <label class="ai-toggle" for="ainone">
-      <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="aiconfig = false"> None
-    </label>
+<div class="modal" ng-show="modal">
+  <div ng-show="modal === 'ai'" class="modal-content">
+    <div class="ai">
+      Computer plays:
+      <label class="ai-toggle" for="aiwhite">
+        <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="aiconfig = false"> White
+      </label>
+      <label class="ai-toggle" for="aiblack">
+        <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="aiconfig = false"> Black
+      </label>
+      <label class="ai-toggle" for="ainone">
+        <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="aiconfig = false"> None
+      </label>
+    </div>
+    <button ng-click="modal = false">
+      Cancel
+    </button>
   </div>
-  <button ng-click="aiconfig = false">
-    Cancel
-  </button>
-</div>
 
-<div ng-show="newgame" class="modal">
-  <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
-  <button ng-click="newgame = false; newGame(pgn); pgn = ''">
-    <span class="iconic" data-glyph="check" title="New game" aria-hidden="true"> New game</span>
-  </button>
-  <button ng-click="newgame = false">
-    Cancel
-  </button>
-</div>
+  <div ng-show="modal === 'new'" class="modal-content">
+    <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
+    <button ng-click="newgame = false; newGame(pgn); pgn = ''">
+      <span class="iconic" data-glyph="check" title="New game" aria-hidden="true"> New game</span>
+    </button>
+    <button ng-click="modal = false">
+      Cancel
+    </button>
+  </div>
 
-<div ng-show="export" class="modal">
-  <textarea rows="5">{{exportPgn}}</textarea>
-  <button ng-click="export = false">
-    Cancel
-  </button>
+  <div ng-show="modal === 'share'" class="modal-content">
+    <textarea rows="5">{{exportPgn}}</textarea>
+    <button ng-click="modal = false">
+      Close
+    </button>
+  </div>
 </div>
 
 <div class="navigation">
-  <a class="navigation-entry" ng-click="newgame = true">
+  <a class="navigation-entry" ng-click="modal = 'new'">
     <i class="icon-plus-circle"></i> New
   </a>
-  <a class="navigation-entry" ng-click="export = true">
+  <a class="navigation-entry" ng-click="modal = 'share'">
     <i class="icon-share"></i> Share
   </a>
-  <a class="navigation-entry" ng-click="aiconfig = true">
+  <a class="navigation-entry" ng-click="modal = 'ai'">
     <i class="icon-ai"></i> AI ({{computer}})
   </a>
 </div>

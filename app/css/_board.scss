@@ -1,0 +1,129 @@
+
+.board {
+  display:inline-block;
+  width: $board-with-legend-width;
+  vertical-align:top;
+}
+
+.board-rank {
+  height: $square-size;
+}
+
+.board-label {
+  display:block;
+  margin:0px;
+  font-size:10px;
+  font-weight:300;
+  color:#666;
+}
+
+.rank-label {
+  line-height: $square-size;
+  width: $board-legend-size;
+  float:right; 
+}
+
+.file-label {
+  float:left; 
+  width: $square-size;
+  height: $board-legend-size;
+  line-height: $board-legend-size;
+}
+
+.board-square {
+  display:inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $piece-size $piece-size;
+  width:$square-size;
+  height:$square-size;
+  &.p-piece {
+    background-image: url('../images/pieces/Chess_pdt45.svg');
+  }
+  &.P-piece {
+    background-image: url('../images/pieces/Chess_plt45.svg');
+  }
+  &.b-piece {
+    background-image: url('../images/pieces/Chess_bdt45.svg');
+  }
+  &.B-piece {
+    background-image: url('../images/pieces/Chess_blt45.svg');
+  }
+  &.k-piece {
+    background-image: url('../images/pieces/Chess_kdt45.svg');
+  }
+  &.K-piece {
+    background-image: url('../images/pieces/Chess_klt45.svg');
+  }
+  &.n-piece {
+    background-image: url('../images/pieces/Chess_ndt45.svg');
+  }
+  &.N-piece {
+    background-image: url('../images/pieces/Chess_nlt45.svg');
+  }
+  &.q-piece {
+    background-image: url('../images/pieces/Chess_qdt45.svg');
+  }
+  &.Q-piece {
+    background-image: url('../images/pieces/Chess_qlt45.svg');
+  }
+  &.r-piece {
+    background-image: url('../images/pieces/Chess_rdt45.svg');
+  }
+  &.R-piece {
+    background-image: url('../images/pieces/Chess_rlt45.svg');
+  }
+  &.black {
+    background-color:$black-color;
+    .fileRank {
+      color: #f0d9b5;
+    }
+    &.selected {
+      background-color:blue;
+    }
+    &.move {
+     background-color:adjust-hue( $black-color,30%);
+    }
+    &.attack {
+     animation: attack-anim-black  1s  infinite;
+    }
+  }
+  &.white {
+    background-color:$white-color;
+    .fileRank {
+      color: #b58863;
+    }
+    &.selected {
+      background-color:blue;
+    }
+    &.move {
+     background-color:adjust-hue(darken($white-color, 10%),30%);
+    }
+    &.attack {
+       animation: attack-anim-white  1s  infinite;
+    }
+  }
+}
+
+
+
+@keyframes attack-anim-white {
+ 0%,100% { 
+   background-color:adjust-hue(darken($white-color, 10%),30%);
+ }
+ 50% { 
+   background-color:adjust-hue(darken($white-color, 10%),-30%);
+ }
+}
+@keyframes attack-anim-black {
+ 0%,100% { 
+   background-color:adjust-hue( $black-color,30%);
+ }
+ 50% { 
+   background-color:adjust-hue( $black-color,-30%);
+ }
+}
+
+
+
+

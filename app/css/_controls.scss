@@ -1,0 +1,42 @@
+
+.controls {
+  display:block;
+  margin-top:15px;
+  width:$board-width;
+  text-align:left;
+  font-size:1.2em;
+}
+
+.control {
+  vertical-align:top;
+  display:inline-block;
+  position:relative;
+  padding:5px 5px 3px 5px;
+  border:1px solid #333;
+  border-radius:3px;
+  color:#333;
+  margin:0 10px 0 0;
+  &.active {
+    color:#AAA;
+    border:1px solid #999;
+    &:hover {
+      color:#FFF;
+      border:1px solid #EEE;
+    }
+  }
+}
+
+.rotate-control {
+  float:right;
+  color:#AAA;
+  border:1px solid #999;
+  margin-right:0px;
+  &:hover {
+    color:#FFF;
+    border:1px solid #EEE;
+  }
+}
+
+.stockfish-control {
+  margin-left:20px;
+}

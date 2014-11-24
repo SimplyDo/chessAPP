@@ -1,0 +1,11 @@
+$square-size: 60px;
+$board-legend-size: 20px;
+$piece-size: 58px;
+
+$board-width: 8 * $square-size;
+$board-with-legend-width: $board-width + $board-legend-size;
+$game-width: $board-width + $square-size + $board-legend-size;
+
+$white-color: #f0d9b5;
+$black-color: #b58863;
+

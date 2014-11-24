@@ -1,0 +1,43 @@
+
+.history {
+  float:right;
+  font-size:0.8em;
+  text-align:right;
+  vertical-align:top;
+  width: $square-size;
+  height: $board-width;
+  overflow:auto;
+}
+
+
+.history-list {
+  list-style:none;
+  padding:0px;
+  margin:0px;
+}
+
+.history-list-entry {
+  margin:0;
+  padding:0;
+  font-weight:300;
+}
+
+
+.history-list-entry-link {
+  display:block;
+  padding:3px 5px;
+  color:#999;
+  cursor:pointer;
+  &:hover {
+    color:#FFF;
+  }
+}
+
+.history-list-entry-active {
+  font-weight:400;
+  a {
+    color:red;
+  }
+}
+
+

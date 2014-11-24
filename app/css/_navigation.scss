@@ -1,0 +1,30 @@
+
+
+.navigation {
+  margin-bottom:30px;
+  font-weight:300;
+  font-size:0.9em;
+  color:#000;
+  background-color:#EEE;
+  text-align:center;
+}
+
+.navigation-entry {
+  display:inline-block;
+  padding:0px 9px 0px 7px;
+  height:40px;
+  line-height:40px;
+  i {
+    font-size:1.2em;
+    vertical-align:-3px;
+    margin-right:1px;
+  }
+}
+
+a.navigation-entry {
+  cursor:pointer;
+  &:hover {
+    color:#000;
+    background-color:#6AF;
+  }
+}

@@ -1,17 +1,14 @@
 @import '../bower_components/reset-scss/reset.scss';
 @import '../bower_components/sweetalert/lib/sweet-alert.scss';
+
+@import 'board-variables'; // These variables are required by several elements!
 @import 'icons';
+@import 'modal';
+@import 'navigation';
+@import 'board';
+@import 'controls';
+@import 'history';
 
-$square-size: 60px;
-$board-legend-size: 20px;
-$piece-size: 58px;
-
-$board-width: 8 * $square-size;
-$board-with-legend-width: $board-width + $board-legend-size;
-$game-width: $board-width + $square-size + $board-legend-size;
-
-$white-color: #f0d9b5;
-$black-color: #b58863;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -28,86 +25,6 @@ body {
   margin:0 auto;
   width: $game-width;
 }
-
-
-.history {
-  float:right;
-  font-size:0.8em;
-  text-align:right;
-  vertical-align:top;
-  width: $square-size;
-  height: $board-width;
-  overflow:auto;
-}
-
-
-.history-list {
-  list-style:none;
-  padding:0px;
-  margin:0px;
-}
-
-.history-list-entry {
-  margin:0;
-  padding:0;
-  font-weight:300;
-}
-
-
-.history-list-entry-link {
-  display:block;
-  padding:3px 5px;
-  color:#999;
-  cursor:pointer;
-  &:hover {
-    color:#FFF;
-  }
-}
-
-.history-list-entry-active {
-  font-weight:400;
-  a {
-    color:red;
-  }
-}
-
-
-
-.board {
-  display:inline-block;
-  width: $board-with-legend-width;
-  vertical-align:top;
-}
-
-.board-rank {
-  height: $square-size;
-}
-
-
-.board-labels {
-}
-
-.board-label {
-  display:block;
-  margin:0px;
-  font-size:10px;
-  font-weight:300;
-  color:#666;
-}
-
-.rank-label {
-  line-height: $square-size;
-  width: $board-legend-size;
-  float:right; 
-}
-
-.file-label {
-  float:left; 
-  width: $square-size;
-  height: $board-legend-size;
-  line-height: $board-legend-size;
-}
-
 
 .game-status {
   width: $board-width;
@@ -126,192 +43,11 @@ body {
 }
 
 
-.controls {
-  display:block;
-  margin-top:15px;
-  width:$board-width;
-  text-align:left;
-  font-size:1.2em;
-}
-
-.control {
-  vertical-align:top;
-  display:inline-block;
-  position:relative;
-  padding:5px 5px 3px 5px;
-  border:1px solid #333;
-  border-radius:3px;
-  color:#333;
-  margin:0 10px 0 0;
-  &.active {
-    color:#AAA;
-    border:1px solid #999;
-    &:hover {
-      color:#FFF;
-      border:1px solid #EEE;
-    }
-  }
-}
-
-.rotate-control {
-  float:right;
-  color:#AAA;
-  border:1px solid #999;
-  margin-right:0px;
-  &:hover {
-    color:#FFF;
-    border:1px solid #EEE;
-  }
-}
-
-.stockfish-control {
-  margin-left:20px;
-}
-
-
-.navigation {
-  margin-bottom:30px;
-  font-weight:300;
-  font-size:0.9em;
-  color:#000;
-  background-color:#EEE;
-  text-align:center;
-}
-
-.navigation-entry {
-  display:inline-block;
-  padding:0px 9px 0px 7px;
-  height:40px;
-  line-height:40px;
-  i {
-    font-size:1.2em;
-    vertical-align:-3px;
-    margin-right:1px;
-  }
-}
-
-a.navigation-entry {
-  cursor:pointer;
-  &:hover {
-    color:#000;
-    background-color:#6AF;
-  }
-}
-
-
 .ai {
   font-weight:300;
-  color:#AAA;
 }
 
 .ai-toggle {
   margin-left:5px;
-  color:#DDD;
 }
 
-.board-square {
-  display:inline-block;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: $piece-size $piece-size;
-  width:$square-size;
-  height:$square-size;
-  &.p-piece {
-    background-image: url('../images/pieces/Chess_pdt45.svg');
-  }
-  &.P-piece {
-    background-image: url('../images/pieces/Chess_plt45.svg');
-  }
-  &.b-piece {
-    background-image: url('../images/pieces/Chess_bdt45.svg');
-  }
-  &.B-piece {
-    background-image: url('../images/pieces/Chess_blt45.svg');
-  }
-  &.k-piece {
-    background-image: url('../images/pieces/Chess_kdt45.svg');
-  }
-  &.K-piece {
-    background-image: url('../images/pieces/Chess_klt45.svg');
-  }
-  &.n-piece {
-    background-image: url('../images/pieces/Chess_ndt45.svg');
-  }
-  &.N-piece {
-    background-image: url('../images/pieces/Chess_nlt45.svg');
-  }
-  &.q-piece {
-    background-image: url('../images/pieces/Chess_qdt45.svg');
-  }
-  &.Q-piece {
-    background-image: url('../images/pieces/Chess_qlt45.svg');
-  }
-  &.r-piece {
-    background-image: url('../images/pieces/Chess_rdt45.svg');
-  }
-  &.R-piece {
-    background-image: url('../images/pieces/Chess_rlt45.svg');
-  }
-  &.black {
-    background-color:$black-color;
-    .fileRank {
-      color: #f0d9b5;
-    }
-    &.selected {
-      background-color:blue;
-    }
-    &.move {
-     background-color:adjust-hue( $black-color,30%);
-    }
-    &.attack {
-     animation: attack-anim-black  1s  infinite;
-    }
-  }
-  &.white {
-    background-color:$white-color;
-    .fileRank {
-      color: #b58863;
-    }
-    &.selected {
-      background-color:blue;
-    }
-    &.move {
-     background-color:adjust-hue(darken($white-color, 10%),30%);
-    }
-    &.attack {
-       animation: attack-anim-white  1s  infinite;
-    }
-  }
-}
-
-
-
-@keyframes attack-anim-white {
- 0%,100% { 
-   background-color:adjust-hue(darken($white-color, 10%),30%);
- }
- 50% { 
-   background-color:adjust-hue(darken($white-color, 10%),-30%);
- }
-}
-@keyframes attack-anim-black {
- 0%,100% { 
-   background-color:adjust-hue( $black-color,30%);
- }
- 50% { 
-   background-color:adjust-hue( $black-color,-30%);
- }
-}
-
-
-
-
-
-.modal {
-  background: white;
-  z-index:100;
-  position: fixed;
-  width: 100%;
-  top: 0px;
-  left: 0px;
-}
