@@ -3,17 +3,17 @@
     <div class="ai">
       Computer plays:
       <label class="ai-toggle" for="aiwhite">
-        <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="aiconfig = false"> White
+        <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="modal = false"> White
       </label>
       <label class="ai-toggle" for="aiblack">
-        <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="aiconfig = false"> Black
+        <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="modal = false"> Black
       </label>
       <label class="ai-toggle" for="ainone">
-        <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="aiconfig = false"> None
+        <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="modal = false"> None
       </label>
     </div>
     <button ng-click="modal = false">
-      Cancel
+      Close
     </button>
   </div>
 
@@ -49,7 +49,6 @@
 
 <div class="game-wrapper">
   
-
   <div class="game">
 
     <div class="game-status">
