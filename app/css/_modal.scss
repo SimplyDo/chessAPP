@@ -1,17 +1,37 @@
 .modal {
-  background-color:#fff;
+  background-color:rgba(0,0,0,0.8);;
   position:absolute;
   left:0;
   top:0;
   bottom:0;
   right:0;
+  padding:10px;
   overflow:auto;
   text-align:center;
   z-index:10;
 }
 
-.modal-content {
+.modal-box {
   margin:0 auto;
+  max-width:500px;
+  min-width:300px;
+  width:80%;
+  background-color:#FFF;
   text-align:left;
-  width:400px;
+}
+
+.modal-box-close {
+  float:right;
+  padding:12px;
+  cursor:pointer;
+  color:#666;
+  transition: transform 0.1s ease;
+  &:hover {
+    transform: scale(1.2);
+    color:#000;
+  }
+}
+
+.modal-box-content {
+  padding:30px 50px 20px 40px;
 }

@@ -1,37 +1,41 @@
 <div class="modal" ng-show="modal">
-  <div ng-show="modal === 'ai'" class="modal-content">
-    <div class="ai">
-      Computer plays:
-      <label class="ai-toggle" for="aiwhite">
-        <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="modal = false"> White
-      </label>
-      <label class="ai-toggle" for="aiblack">
-        <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="modal = false"> Black
-      </label>
-      <label class="ai-toggle" for="ainone">
-        <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="modal = false"> None
-      </label>
+  <div class="modal-box">
+    <a class="modal-box-close" ng-click="modal = false">
+      <i class="icon-x"></i>
+    </a>
+    <div ng-show="modal === 'ai'" class="modal-box-content">
+      <form class="pure-form">
+        <fieldset>
+          <legend>Computer plays</legend>
+          <div class="pure-control-group">
+            <label for="aiwhite" class="pure-radio">
+              <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="modal = false"> White
+            </label>
+            <label class="pure-radio" for="aiblack">
+              <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="modal = false"> Black
+            </label>
+            <label class="pure-radio" for="ainone">
+              <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="modal = false"> None
+            </label>
+          </div>
+        </fieldset>
+      </form>
     </div>
-    <button ng-click="modal = false">
-      Close
-    </button>
-  </div>
 
-  <div ng-show="modal === 'new'" class="modal-content">
-    <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
-    <button ng-click="newgame = false; newGame(pgn); pgn = ''">
-      <span class="iconic" data-glyph="check" title="New game" aria-hidden="true"> New game</span>
-    </button>
-    <button ng-click="modal = false">
-      Cancel
-    </button>
-  </div>
+    <div ng-show="modal === 'new'" class="modal-box-content">
+      <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
+      <button class="pure-button pure-button-primary" ng-click="newgame = false; newGame(pgn); pgn = ''">
+        <span ng-hide="pgn">New game</span>
+        <span ng-show="pgn">Load game</span>
+      </button>
+      <button class="pure-button pure-button-secondary" ng-click="modal = false">
+        Cancel
+      </button>
+    </div>
 
-  <div ng-show="modal === 'share'" class="modal-content">
-    <textarea rows="5">{{exportPgn}}</textarea>
-    <button ng-click="modal = false">
-      Close
-    </button>
+    <div ng-show="modal === 'share'" class="modal-box-content">
+      <textarea rows="5">{{exportPgn}}</textarea>
+    </div>
   </div>
 </div>
 

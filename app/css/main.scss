@@ -1,6 +1,11 @@
 @import '../bower_components/reset-scss/reset.scss';
 @import '../bower_components/sweetalert/lib/sweet-alert.scss';
 
+@import url('../bower_components/purecss/src/buttons/css/buttons-core.css');
+@import url('../bower_components/purecss/src/buttons/css/buttons.css');
+@import url('../bower_components/purecss/src/forms/css/forms.css');
+
+
 @import 'board-variables'; // These variables are required by several elements!
 @import 'icons';
 @import 'modal';
@@ -8,6 +13,7 @@
 @import 'board';
 @import 'controls';
 @import 'history';
+@import 'buttons';
 
 
 body {
@@ -40,14 +46,5 @@ body {
   font-size:0.8em;
   color: #999;
   float:right;
-}
-
-
-.ai {
-  font-weight:300;
-}
-
-.ai-toggle {
-  margin-left:5px;
 }
 
