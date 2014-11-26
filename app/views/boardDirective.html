@@ -1,23 +1,10 @@
 <div class="board">
-  <div ng-if="!rotate">
-    <div ng-repeat="rank in ranks" ng-init="rankNumber = 8-$index" class="board-rank">
-      <span ng-init="fileLetter = fileLabels[$index]" ng-repeat="square in rank track by $index" class="board-square {{square.color}} {{square.highlight}} {{square.piece}}-piece" ng-click="clickSquare(fileLetter, rankNumber);">
+    <div ng-repeat="rank in reverseArray(ranks,rotate)" ng-init="rankNumber = 8-$index" class="board-rank">
+      <span ng-repeat="square in reverseArray(rank,rotate) track by $index" class="board-square {{square.color}} {{square.highlight}} {{square.piece}}-piece" ng-click="clickSquare(fileLabels[square.file], square.rank);">
       </span>
       <span class="board-label rank-label">{{rankNumber}}</span>
     </div>
     <div class="board-labels">
-      <span class="board-label file-label" ng-repeat="file in ['A','B','C','D','E','F','G','H']">{{file}}</span>
+      <span class="board-label file-label" ng-repeat="file in reverseArray(['A','B','C','D','E','F','G','H'],rotate)">{{file}}</span>
     </div>
-  </div>
-
-  <div ng-if="rotate">
-    <div ng-repeat="rank in ranks | reverse" ng-init="rankNumber = $index+1" class="board-rank">
-      <span ng-init="fileLetter = fileLabels[7-$index]" ng-repeat="square in rank | reverse track by $index" class="board-square {{square.color}} {{square.highlight}} {{square.piece}}-piece"  ng-click="clickSquare(fileLetter, rankNumber);">
-      </span>
-      <span class="board-label rank-label">{{rankNumber}}</span>
-    </div>
-    <div class="board-labels">
-      <span class="board-label file-label" ng-repeat="file in ['A','B','C','D','E','F','G','H'] | reverse">{{file}}</span>
-    </div>
-  </div>
 </div>

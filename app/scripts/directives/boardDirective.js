@@ -67,7 +67,7 @@ angular.module('chessBoardDirective',[])
             color = 'white';
           }
           for (var f = 0; f < 8; f++) {
-            $scope.ranks[r][f] = {color: color, piece: false, highlight: false};
+            $scope.ranks[r][f] = {color: color, piece: false, highlight: false, rank: 8-r, file: f};
             if (color === 'white') { //changing the color for each square
               color = 'black';
             } else {
@@ -116,7 +116,6 @@ angular.module('chessBoardDirective',[])
               $scope.ranks[rank][file].piece = notation;
             }
           }
-          $scope.fen = exportFen();
         }
       };
 
@@ -145,6 +144,14 @@ angular.module('chessBoardDirective',[])
           }
         }
         return fen;
+      };
+
+      $scope.reverseArray = function(array,reverse) {
+        if (reverse === true) {
+          return array.slice().reverse();
+        } else {
+          return array;
+        } 
       };
       
       init();
