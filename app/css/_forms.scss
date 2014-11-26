@@ -1,0 +1,16 @@
+// extend some defalt styles from pure
+
+label {
+  color:#333;
+  margin-bottom:0.5em !important;
+}
+
+input[type=text], textarea {
+  font-weight:300;
+  font-size:12px;
+}
+
+.form-tip {
+  color:#666;
+  font-weight:300;
+}

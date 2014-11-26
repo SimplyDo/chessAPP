@@ -1,7 +1,6 @@
 
 .history {
   float:right;
-  font-size:0.8em;
   text-align:right;
   vertical-align:top;
   width: $square-size;
@@ -25,7 +24,7 @@
 
 .history-list-entry-link {
   display:block;
-  padding:3px 5px;
+  padding:3px 0;
   color:#999;
   cursor:pointer;
   &:hover {

@@ -4,37 +4,73 @@
       <i class="icon-x"></i>
     </a>
     <div ng-show="modal === 'ai'" class="modal-box-content">
+      <h1 class="modal-box-content-title">Configure AI</h1>
       <form class="pure-form">
         <fieldset>
-          <legend>Computer plays</legend>
           <div class="pure-control-group">
             <label for="aiwhite" class="pure-radio">
-              <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="modal = false"> White
+              <input id="aiwhite" ng-model="computer" value="white" type="radio" ng-change="modal = false"> Computer plays white
             </label>
             <label class="pure-radio" for="aiblack">
-              <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="modal = false"> Black
+              <input id="aiblack" ng-model="computer" value="black" type="radio" ng-change="modal = false"> Computer plays black
             </label>
             <label class="pure-radio" for="ainone">
-              <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="modal = false"> None
+              <input id="ainone" ng-model="computer" value="none" type="radio" ng-change="modal = false"> Computer does not play automatically
             </label>
           </div>
         </fieldset>
+        <div class="form-tip typeset">
+          <p>This setting will automatically retrive and apply the best move as determined by the dxc4.com API. The specific API call is utilizing the open source <a href="http://stockfishchess.org" target="new">Stockfish chess engine</a>.</p>
+        </div>
       </form>
     </div>
 
     <div ng-show="modal === 'new'" class="modal-box-content">
-      <textarea ng-model="pgn" rows="5" placeholder="leave blank for new game"></textarea>
-      <button class="pure-button pure-button-primary" ng-click="newgame = false; newGame(pgn); pgn = ''">
-        <span ng-hide="pgn">New game</span>
-        <span ng-show="pgn">Load game</span>
-      </button>
-      <button class="pure-button pure-button-secondary" ng-click="modal = false">
-        Cancel
-      </button>
+      <h1 class="modal-box-content-title">New Game</h1>
+      <form class="pure-form pure-form-stacked">
+        <fieldset ng-init="importPgn = ''">
+          <div class="pure-control-group">
+            <label for="new-reset" class="pure-radio">
+              <input id="new-reset" ng-model="importPgn" value="" type="radio" ng-change="pgn = ''"> Reset board
+            </label>
+            <label class="pure-radio" for="new-import">
+              <input id="new-import" ng-model="importPgn" value="true" type="radio" > Import game via PGN notation
+            </label>
+          </div>
+        </fieldset>
+        <fieldset ng-show="importPgn">
+          <div class="pure-control-group">
+            <label for="pgn-import">PGN notated moves</label>
+            <textarea class="pure-input-1" id="pgn-import" ng-model="pgn" rows="5" placeholder="For example: 1. d4 d5 2. c4 dxc4 ..."></textarea>
+          </div>
+        </fieldset>
+          
+        <button class="pure-button pure-button-primary" ng-click="modal = false; newGame(pgn); pgn = ''">
+          <span ng-hide="pgn">New game</span>
+          <span ng-show="pgn">Load game</span>
+        </button>
+        <button class="pure-button pure-button-secondary" ng-click="modal = false">
+          Cancel
+        </button>
+      </form>
     </div>
 
     <div ng-show="modal === 'share'" class="modal-box-content">
-      <textarea rows="5">{{exportPgn}}</textarea>
+      <h1 class="modal-box-content-title">Share game</h1>
+      <form class="pure-form pure-form-stacked">
+        <fieldset>
+          <div class="pure-control-group">
+            <label for="url-export">URL for this game</label>
+            <input type="text" class="pure-input-1" readonly id="url-export" value="{{currentUrl();}}" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="pure-control-group">
+            <label for="pgn-export">PGN notation for this game</label>
+            <textarea class="pure-input-1" readonly id="pgn-export" rows="5">{{exportPgn}}</textarea>
+          </div>
+        </fieldset>
+      </form>
     </div>
   </div>
 </div>

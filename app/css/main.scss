@@ -13,12 +13,15 @@
 @import 'board';
 @import 'controls';
 @import 'history';
+@import 'forms';
+@import 'typeset';
 
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size:13px;
   background-color: #000;
-  color:#AAA;
+  color:#000;
 }
 
 .game-wrapper {
@@ -32,17 +35,18 @@ body {
 }
 
 .game-status {
-  width: $board-width;
+  color:#DDD;
   text-align:left;
   font-weight:300;
   margin-bottom:10px;
+  font-size:15px;
   &:first-letter {
     text-transform: capitalize;
   }
 }
 
 .game-status-step {
-  font-size:0.8em;
+  font-size:13px;
   color: #999;
   float:right;
 }

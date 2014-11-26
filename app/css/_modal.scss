@@ -18,11 +18,13 @@
   width:80%;
   background-color:#FFF;
   text-align:left;
+  border-radius: 3px;
 }
 
 .modal-box-close {
   float:right;
-  padding:12px;
+  margin: 5px 5px 0 0;
+  padding:10px;
   cursor:pointer;
   color:#666;
   transition: transform 0.1s ease;
@@ -33,5 +35,15 @@
 }
 
 .modal-box-content {
-  padding:30px 50px 20px 40px;
+  padding:15px 30px 30px 30px;
+}
+
+.modal-box-content-title {
+  display:block;
+  text-align:center;
+  padding-bottom:10px;
+  font-weight:300;
+  font-size:15px;
+  margin-bottom:10px;
+  color:#AAA;
 }
