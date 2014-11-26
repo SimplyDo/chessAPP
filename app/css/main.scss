@@ -30,8 +30,8 @@ body {
 
 .game {
   user-select: none;
-  margin:0 auto;
-  width: $game-width;
+  display:inline-block;
+  width: $board-with-legend-width;
 }
 
 .game-status {
@@ -40,6 +40,7 @@ body {
   font-weight:300;
   margin-bottom:10px;
   font-size:15px;
+  width: $board-width;
   &:first-letter {
     text-transform: capitalize;
   }

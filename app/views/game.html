@@ -99,13 +99,6 @@
       <span class="game-status-step" ng-show="historyLength > 0"><span ng-show="historyStep < historyLength">{{historyStep}}/</span>{{historyLength}} half moves</span>
     </div>
     <board board="board" check="status.isCheck" checkmate="status.isCheckmate" side="status.side.name" selected="selectedSquare" moves="selectedMoves" rotate="rotateBoard"></board>
-    <div class="history">
-      <ul class="history-list">
-        <li ng-repeat="entry in history track by $index" class="history-list-entry" ng-class="{'history-list-entry-active': $index == historyStep-1}">
-        <a ng-click="rewindGame($index+1,false)" class="history-list-entry-link">{{entry}}</a>
-        </li>
-      </ul>
-    </div>
 
     <div class="controls">
       <a class="control" ng-class="{active: historyStep > 0}" ng-click="rewindGame(0,false)">
@@ -128,4 +121,13 @@
       </a>
     </div>
   </div>
+  
+  <div class="history">
+    <ul class="history-list">
+      <li ng-repeat="entry in history track by $index" class="history-list-entry" ng-class="{'history-list-entry-active': $index == historyStep-1}">
+      <a ng-click="rewindGame($index+1,false)" class="history-list-entry-link">{{entry}}</a>
+      </li>
+    </ul>
+  </div>
+
 </div>
