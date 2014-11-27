@@ -30,35 +30,35 @@ angular.module('chessApp')
     };
 
     var assignGameData = function(data) {
-      $scope.board = data.board.squares;
-      $scope.currentHistory = data.history;
+      $scope.board = data.board;
+      $scope.currentHistory = data.previousMoves;
       $scope.status = {};
       $scope.status.isCheck = data.isCheck;
       $scope.status.isCheckmate = data.isCheckmate;
       $scope.status.isRepetition = data.isRepetition;
       $scope.status.isStalemate = data.isStalemate;
-      $scope.fullMoves = data.fullMoves;
+      $scope.fullMoves = data.peviousFullMoves;
       $scope.status.side = data.side;
       $scope.exportPgn = data.pgn;
-      $scope.availableMoves = data.notatedMoves;
-      $scope.availableMovesCount = Object.keys(data.notatedMoves).length;
+      $scope.availableMoves = data.availableMoves;
+      $scope.availableMovesCount = Object.keys(data.availableMoves).length;
       $scope.apicallinprogress = false;
-      updateUrlHistory(data.history);
+      updateUrlHistory(data.previousMoves);
       deselectSquare();
-      autoTurn($scope.status.side.name);
+      autoTurn($scope.status.side);
       popUpMessage($scope.status);
     };
     
     var popUpMessage = function(status) {
       if (status.isCheck) {
         // sweetAlert({
-        //   title: status.side.name + " is in check!",
+        //   title: status.side + " is in check!",
         //   timer: 2000,
         //   type: "warning"
         // });
       } else if (status.isCheckmate) {
         sweetAlert({
-          title: status.side.name + ' is checkmate!',
+          title: status.side + ' is checkmate!',
           type: 'success',
           confirmButtonColor: '#69F'
         });
@@ -118,9 +118,9 @@ angular.module('chessApp')
       noAi();
       gameApi.update({ pgn: pgn}, function (data) {
         assignGameData(data);
-        $scope.history = data.history;
-        $scope.historyLength = data.history.length;
-        $scope.historyStep = data.history.length;
+        $scope.history = data.previousMoves;;
+        $scope.historyLength = data.previousMoves.length;
+        $scope.historyStep = data.previousMoves.length;
       });
     };
     
@@ -152,9 +152,9 @@ angular.module('chessApp')
         $scope.apicallinprogress = true;
         moveApi.update({ history: $scope.currentHistory, move: moveToMake}, function (data) {
           assignGameData(data);
-          $scope.history = data.history;
-          $scope.historyLength = data.history.length;
-          $scope.historyStep = data.history.length;
+          $scope.history = data.previousMoves;
+          $scope.historyLength = data.previousMoves.length;
+          $scope.historyStep = data.previousMoves.length;
         });
       }
     };
@@ -164,9 +164,9 @@ angular.module('chessApp')
         $scope.apicallinprogress = true;
         bestMoveApi.update({ history: $scope.currentHistory}, function (data) {
           assignGameData(data);
-          $scope.history = data.history;
-          $scope.historyLength = data.history.length;
-          $scope.historyStep = data.history.length;
+          $scope.history = data.previousMoves;
+          $scope.historyLength = data.previousMoves.length;
+          $scope.historyStep = data.previousMoves.length;
         });
       }
     };
@@ -183,7 +183,7 @@ angular.module('chessApp')
 
     $scope.$watch('computer', function(newValue, oldValue) {
       if (newValue !== 'none') {
-        autoTurn($scope.status.side.name);
+        autoTurn($scope.status.side);
       }
     });
 
