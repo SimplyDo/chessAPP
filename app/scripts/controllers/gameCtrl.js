@@ -174,7 +174,7 @@ angular.module('chessApp')
 
     $scope.currentUrl = function() {
       return $location.absUrl();
-    }
+    };
 
     $scope.rotate = function() {
       $scope.rotateBoard = !$scope.rotateBoard;

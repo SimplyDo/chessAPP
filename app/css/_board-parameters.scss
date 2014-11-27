@@ -1,14 +1,21 @@
+// Square sizes to be used depending on the device size
 $square-size-s: 30px;
 $square-size-m: 50px;
 $square-size-l: 70px;
 $board-legend-size: 20px;
 
+// Defining some break points for which square size to use
 $large-device: 1400px;
 $small-device: 450px;
 
+// Color sheme for the board
 $white-color: #f0d9b5;
 $black-color: #b58863;
 
+
+
+// Mixins apply the correct dimensions for each device
+// Would be nice to find a smarter way of doing this (might require a different approach to how the board is rendered)
 
 @mixin square-width {
   width:$square-size-s; 
@@ -76,24 +83,5 @@ $black-color: #b58863;
   }
   @media screen and (min-width: $large-device) {
     width: 8*$square-size-l + $board-legend-size;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-@mixin responsive-width($type) {
-  @if $type == square {
-    width: $square-size;
-  } @else if $type == board {
-    width: 8 * $square-size;
-  } @else if $type == board-with-legend {
-    width: 8 * $square-size + $board-legend-size;
   }
 }
