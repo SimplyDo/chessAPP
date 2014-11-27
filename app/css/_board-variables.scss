@@ -1,11 +1,99 @@
-$square-size: 60px;
+$square-size-s: 30px;
+$square-size-m: 50px;
+$square-size-l: 70px;
 $board-legend-size: 20px;
-$piece-size: 58px;
 
-$board-width: 8 * $square-size;
-$board-with-legend-width: $board-width + $board-legend-size;
-$game-width: $board-width + $square-size + $board-legend-size;
+$large-device: 1400px;
+$small-device: 450px;
 
 $white-color: #f0d9b5;
 $black-color: #b58863;
 
+
+@mixin square-width {
+  width:$square-size-s; 
+  @media screen and (max-width: $small-device) {
+    width: $square-size-s;
+  }
+  @media screen and (min-width: $small-device) and (max-width: $large-device) {
+    width: $square-size-m;
+  }
+  @media screen and (min-width: $large-device) {
+    width: $square-size-l;
+  }
+}
+
+@mixin square-height {
+  height:$square-size-s; 
+  line-height:$square-size-s;
+  @media screen and (max-width: $small-device) {
+    height:$square-size-s; 
+    line-height:$square-size-s;
+  }
+  @media screen and (min-width: $small-device) and (max-width: $large-device) {
+    height:$square-size-m; 
+    line-height:$square-size-m;
+  }
+  @media screen and (min-width: $large-device) {
+    height:$square-size-l; 
+    line-height:$square-size-l;
+  }
+}
+
+@mixin board-width {
+  width:8*$square-size-s; 
+  @media screen and (max-width: $small-device) {
+    width: 8*$square-size-s;
+  }
+  @media screen and (min-width: $small-device) and (max-width: $large-device) {
+    width: 8*$square-size-m;
+  }
+  @media screen and (min-width: $large-device) {
+    width: 8*$square-size-l;
+  }
+}
+
+@mixin board-height {
+  height:8*$square-size-s; 
+  @media screen and (max-width: $small-device) {
+    height: 8*$square-size-s;
+  }
+  @media screen and (min-width: $small-device) and (max-width: $large-device) {
+    height: 8*$square-size-m;
+  }
+  @media screen and (min-width: $large-device) {
+    height: 8*$square-size-l;
+  }
+}
+
+@mixin board-with-legend-width {
+  width:8*$square-size-s + $board-legend-size; 
+  @media screen and (max-width: $small-device) {
+    width: 8*$square-size-s + $board-legend-size;
+  }
+  @media screen and (min-width: $small-device) and (max-width: $large-device) {
+    width: 8*$square-size-m + $board-legend-size;
+  }
+  @media screen and (min-width: $large-device) {
+    width: 8*$square-size-l + $board-legend-size;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@mixin responsive-width($type) {
+  @if $type == square {
+    width: $square-size;
+  } @else if $type == board {
+    width: 8 * $square-size;
+  } @else if $type == board-with-legend {
+    width: 8 * $square-size + $board-legend-size;
+  }
+}

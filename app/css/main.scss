@@ -29,18 +29,18 @@ body {
 }
 
 .game {
+  @include board-with-legend-width;
   user-select: none;
   display:inline-block;
-  width: $board-with-legend-width;
 }
 
 .game-status {
+  @include board-width;
   color:#DDD;
   text-align:left;
   font-weight:300;
   margin-bottom:10px;
   font-size:15px;
-  width: $board-width;
   &:first-letter {
     text-transform: capitalize;
   }

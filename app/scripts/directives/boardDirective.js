@@ -29,21 +29,6 @@ angular.module('chessBoardDirective',[])
         $scope.$emit('squareClicked', {file:fileLetter, rank:rank});
       };
 
-      $scope.art = {
-        p: 'images/pieces/Chess_pdt45.svg',
-        P: 'images/pieces/Chess_plt45.svg',
-        b: 'images/pieces/Chess_bdt45.svg',
-        B: 'images/pieces/Chess_blt45.svg',
-        k: 'images/pieces/Chess_kdt45.svg',
-        K: 'images/pieces/Chess_klt45.svg',
-        n: 'images/pieces/Chess_ndt45.svg',
-        N: 'images/pieces/Chess_nlt45.svg',
-        q: 'images/pieces/Chess_qdt45.svg',
-        Q: 'images/pieces/Chess_qlt45.svg',
-        r: 'images/pieces/Chess_rdt45.svg',
-        R: 'images/pieces/Chess_rlt45.svg'
-      };
-
       $scope.fileLabels = ['a','b','c','d','e','f','g','h'];
       var fileMap = {a:0,b:1,c:2,d:3,e:4,f:5,g:6,h:7};
       var notationMap = {white:{rook:'R',knight:'N',bishop:'B',queen:'Q',king:'K',pawn:'P'},black:{rook:'r',knight:'n',bishop:'b',queen:'q',king:'k',pawn:'p'}};

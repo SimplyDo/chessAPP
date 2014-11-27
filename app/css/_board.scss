@@ -1,12 +1,11 @@
 
 .board {
   display:inline-block;
-  width: $board-with-legend-width;
   vertical-align:top;
 }
 
 .board-rank {
-  height: $square-size;
+  @include square-height;
 }
 
 .board-label {
@@ -18,25 +17,25 @@
 }
 
 .rank-label {
-  line-height: $square-size;
+  @include square-height;
   width: $board-legend-size;
   float:right; 
 }
 
 .file-label {
+  @include square-width;
   float:left; 
-  width: $square-size;
   height: $board-legend-size;
   line-height: $board-legend-size;
 }
 
 .board-square {
+  @include square-height;
+  @include square-width;
   display:inline-block;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: $piece-size $piece-size;
-  width:$square-size;
-  height:$square-size;
+  background-size: 95% 95%;
   &.p-piece {
     background-image: url('../images/pieces/Chess_pdt45.svg');
   }

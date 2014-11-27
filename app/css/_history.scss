@@ -1,10 +1,10 @@
 
 .history {
+  @include board-height;
+  @include square-width;
   display:inline-block;
   text-align:right;
   vertical-align:top;
-  width: $square-size;
-  height: $board-width;
   overflow:auto;
 }
 
