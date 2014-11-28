@@ -39,6 +39,7 @@ angular.module('chessApp')
       $scope.status.isStalemate = data.isStalemate;
       $scope.fullMoves = data.peviousFullMoves;
       $scope.status.side = data.side;
+      $scope.fen = data.fen;
       $scope.exportPgn = data.pgn;
       $scope.availableMoves = data.availableMoves;
       $scope.availableMovesCount = Object.keys(data.availableMoves).length;

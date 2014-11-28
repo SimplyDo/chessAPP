@@ -67,7 +67,13 @@
         <fieldset>
           <div class="pure-control-group">
             <label for="pgn-export">PGN notation for this game</label>
-            <textarea class="pure-input-1" readonly id="pgn-export" rows="5">{{exportPgn}}</textarea>
+            <textarea class="pure-input-1" readonly id="pgn-export" rows="3">{{exportPgn}}</textarea>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="pure-control-group">
+            <label for="fen-export">FEN notation for this board</label>
+            <input type="text" class="pure-input-1" readonly id="fen-export" value="{{fen}}" />
           </div>
         </fieldset>
       </form>
@@ -92,9 +98,9 @@
   <div class="game">
 
     <div class="game-status">
-      <span ng-hide="status.isCheckmate || status.isCheck">{{status.side.name}}'s turn</span>
-      <span ng-show="status.isCheck">{{status.side.name}} is in check</span>
-      <span ng-show="status.isCheckmate">{{status.side.name}} is check mate</span>
+      <span ng-hide="status.isCheckmate || status.isCheck">{{status.side}}'s turn</span>
+      <span ng-show="status.isCheck">{{status.side}} is in check</span>
+      <span ng-show="status.isCheckmate">{{status.side}} is check mate</span>
       <span ng-show="status.isStalemate">Stalemate</span>
       <span class="game-status-step" ng-show="historyLength > 0"><span ng-show="historyStep < historyLength">{{historyStep}}/</span>{{historyLength}} half moves</span>
     </div>

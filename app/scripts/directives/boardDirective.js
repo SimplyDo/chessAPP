@@ -104,33 +104,6 @@ angular.module('chessBoardDirective',[])
         }
       };
 
-      var exportFen = function () {
-        var fen = '';
-        for (var r = 0; r < 8; r++) {
-          var emptySquares = 0;
-          for (var f = 0; f < 8; f++) {
-            if (!$scope.ranks[r][f].piece) {
-              emptySquares++;
-            } else if (emptySquares !== 0) {
-              fen = fen + emptySquares;
-              emptySquares = 0;
-            }
-            if ($scope.ranks[r][f].piece) {
-              fen = fen + $scope.ranks[r][f].piece;
-            }
-          }
-          if (emptySquares !== 0) {
-            //insert empty suqares count at the end of rank if any
-            fen = fen + emptySquares;
-          }
-          if (r < 7) {
-            // add a slash at the end of each rank unless it is the last
-            fen = fen + '/';
-          }
-        }
-        return fen;
-      };
-
       $scope.reverseArray = function(array,reverse) {
         if (reverse === true) {
           return array.slice().reverse();
