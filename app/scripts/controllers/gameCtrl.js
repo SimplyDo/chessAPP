@@ -117,7 +117,7 @@ angular.module('chessApp')
       console.log('New game');
       $scope.apicallinprogress = true;
       noAi();
-      gameApi.update({ pgn: pgn}, function (data) {
+      gameApi.update({ pgn: pgn, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
         assignGameData(data);
         $scope.history = data.previousMoves;;
         $scope.historyLength = data.previousMoves.length;
@@ -141,7 +141,7 @@ angular.module('chessApp')
           $scope.historyStep = movecount;
         }
         $scope.apicallinprogress = true;
-        gameApi.update({ history: $scope.history, movecount: $scope.historyStep}, function (data) {
+        gameApi.update({ history: $scope.history, movecount: $scope.historyStep, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
           assignGameData(data);
         });
       }
@@ -151,7 +151,7 @@ angular.module('chessApp')
       if (!$scope.apicallinprogress) {
         console.log('making move: ' + moveToMake);
         $scope.apicallinprogress = true;
-        moveApi.update({ history: $scope.currentHistory, move: moveToMake}, function (data) {
+        moveApi.update({ history: $scope.currentHistory, move: moveToMake, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
           assignGameData(data);
           $scope.history = data.previousMoves;
           $scope.historyLength = data.previousMoves.length;
@@ -163,7 +163,7 @@ angular.module('chessApp')
     $scope.playBestMove = function() {
       if (!$scope.status.isCheckmate && !$scope.apicallinprogress) {
         $scope.apicallinprogress = true;
-        bestMoveApi.update({ history: $scope.currentHistory}, function (data) {
+        bestMoveApi.update({ history: $scope.currentHistory, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
           assignGameData(data);
           $scope.history = data.previousMoves;
           $scope.historyLength = data.previousMoves.length;
