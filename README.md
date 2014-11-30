@@ -1,7 +1,7 @@
 dxc4.com Demo Client App
 ========
 
-A rich chess client based on the [dxc4 chess api](http://apidocs.dxc4.com/dxc4).
+A rich chess client based on the dxc4 chess API available at http://api.dxc4.com (see [interactive documentation](http://apidocs.dxc4.com/dxc4))
 
 See it in action at: http://dxc4.com/
 
