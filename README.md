@@ -48,7 +48,6 @@ Caveat: PM2 does not pass through enviroment variables so you will require to us
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
     "env": {
         "CHESS_APP_PORT": 80
-```
     }
 }
 ```
