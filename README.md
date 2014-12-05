@@ -1,8 +1,10 @@
 dxc4.com Demo Client App
 ========
 
-A rich chess client using the dxc4 chess api at http://api.dxc4.com
+A rich chess client based on the dxc4 chess API available at http://api.dxc4.com (see [interactive documentation](http://apidocs.dxc4.com/dxc4))
+
 See it in action at: http://dxc4.com/
+
 
 Set up
 =========
@@ -46,7 +48,6 @@ Caveat: PM2 does not pass through enviroment variables so you will require to us
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
     "env": {
         "CHESS_APP_PORT": 80
-```
     }
 }
 ```
