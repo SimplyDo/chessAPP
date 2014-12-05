@@ -7,18 +7,10 @@ angular.module('chessApp')
 
     var apiRoot = 'http://api.dxc4.com';
 
-    var gameApi =  $resource(apiRoot + '/game/:movecount', {}, {
+    var gameApi =  $resource(apiRoot + '/game', {}, {
       update: { method: 'POST' }
       });
 
-    var moveApi =  $resource(apiRoot + '/move/:move', {}, {
-      update: { method: 'POST' }
-      });
-
-    var bestMoveApi =  $resource(apiRoot + '/bestmove', {}, {
-      update: { method: 'POST' }
-      });
-    
     var updateUrlHistory = function (historyArray) {
       var urlString;
       if (historyArray.length > 0) {
@@ -41,8 +33,8 @@ angular.module('chessApp')
       $scope.status.side = data.side;
       $scope.fen = data.fen;
       $scope.exportPgn = data.pgn;
-      $scope.availableMoves = data.availableMoves;
-      $scope.availableMovesCount = Object.keys(data.availableMoves).length;
+      $scope.availableMoves = data.availableFullMoves;
+      $scope.availableMovesCount = Object.keys(data.availableFullMoves).length;
       $scope.apicallinprogress = false;
       updateUrlHistory(data.previousMoves);
       deselectSquare();
@@ -117,9 +109,9 @@ angular.module('chessApp')
       console.log('New game');
       $scope.apicallinprogress = true;
       noAi();
-      gameApi.update({ pgn: pgn, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
+      gameApi.update({ pgn: pgn, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableFullMoves,board'}, function (data) {
         assignGameData(data);
-        $scope.history = data.previousMoves;;
+        $scope.history = data.previousMoves;
         $scope.historyLength = data.previousMoves.length;
         $scope.historyStep = data.previousMoves.length;
       });
@@ -141,7 +133,7 @@ angular.module('chessApp')
           $scope.historyStep = movecount;
         }
         $scope.apicallinprogress = true;
-        gameApi.update({ history: $scope.history, movecount: $scope.historyStep, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
+        gameApi.update({ pgn: $scope.history.join(' '), moveCount: $scope.historyStep, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableFullMoves,board'}, function (data) {
           assignGameData(data);
         });
       }
@@ -151,7 +143,7 @@ angular.module('chessApp')
       if (!$scope.apicallinprogress) {
         console.log('making move: ' + moveToMake);
         $scope.apicallinprogress = true;
-        moveApi.update({ history: $scope.currentHistory, move: moveToMake, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
+        gameApi.update({ pgn: $scope.currentHistory.join(' '), nextMove: moveToMake, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableFullMoves,board'}, function (data) {
           assignGameData(data);
           $scope.history = data.previousMoves;
           $scope.historyLength = data.previousMoves.length;
@@ -163,7 +155,7 @@ angular.module('chessApp')
     $scope.playBestMove = function() {
       if (!$scope.status.isCheckmate && !$scope.apicallinprogress) {
         $scope.apicallinprogress = true;
-        bestMoveApi.update({ history: $scope.currentHistory, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableMoves,board'}, function (data) {
+        gameApi.update({ pgn: $scope.currentHistory.join(' '), stockfish: true, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableFullMoves,board'}, function (data) {
           assignGameData(data);
           $scope.history = data.previousMoves;
           $scope.historyLength = data.previousMoves.length;
