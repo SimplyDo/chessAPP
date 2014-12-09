@@ -7,7 +7,7 @@ angular.module('chessApp')
 
     var apiRoot = 'http://api.dxc4.com';
 
-    var gameApi =  $resource(apiRoot + '/game', {}, {
+    var gameApi =  $resource(apiRoot + '/pgnparser', {}, {
       update: { method: 'POST' }
       });
 
