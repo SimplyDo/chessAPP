@@ -3,10 +3,11 @@
   "author": "Alexander Kohlhofer <alexander@kohlhofer.com>",
   "version": "0.0.5",
   "dependencies": {
+    "gulp-inject": "^1.1.1",
     "http": "0.0.0",
-    "util": "~0.10.3",
     "paperboy": "0.0.5",
-    "path": "~0.4.9"
+    "path": "~0.4.9",
+    "util": "~0.10.3"
   },
   "devDependencies": {
     "gulp": "~3.8.10",

@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
+    inject = require("gulp-inject"),
     del = require('del');
 
 gulp.task('default', function() {
@@ -18,7 +19,7 @@ gulp.task('default', function() {
 });
 
 gulp.task('app', function() {
-  gulp.start('app-styles', 'app-scripts', 'app-images', 'app-move');
+  gulp.start('app-addtracking','app-styles', 'app-scripts', 'app-images', 'app-move');
 });
 
 gulp.task('watch', function() {
@@ -48,10 +49,23 @@ gulp.task('watch', function() {
 gulp.task('app-move',function(){
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
-  gulp.src(['app/bower_components/**/*','app/css/fonts/**/*','app/views/**/*','app/index.html','app/404.html'], { base: 'app/' })
+  gulp.src(['app/bower_components/**/*','app/css/fonts/**/*','app/views/**/*','app/404.html'], { base: 'app/' })
   .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('app-addtracking',function(){
+  // injects optional tracking code if present
+  gulp.src('./app/index.html')
+    .pipe(inject(gulp.src(['./app/tracking/*.html']), {
+      starttag: '<!-- inject:tracking:{{ext}} -->',
+      transform: function (filePath, file) {
+        // return file contents as string
+        return file.contents.toString('utf8')
+      }
+    }))
+    .pipe(gulp.dest('./dist'));
+
+});
 
 gulp.task('app-styles', function() {
   return gulp.src('app/css/main.scss')

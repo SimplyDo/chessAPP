@@ -41,6 +41,12 @@ angular.module('chessApp')
       autoTurn($scope.status.side);
       popUpMessage($scope.status);
     };
+
+    var trackAnalytics = function(eventName,properties) {
+      if (mixpanel) {
+        mixpanel.track(eventName,properties);
+      }
+    }
     
     var popUpMessage = function(status) {
       if (status.isCheck) {
@@ -114,6 +120,11 @@ angular.module('chessApp')
         $scope.history = data.previousMoves;
         $scope.historyLength = data.previousMoves.length;
         $scope.historyStep = data.previousMoves.length;
+        if (pgn) {
+          trackAnalytics('Game loaded',{ pgn:pgn, 'Game length':$scope.history.length});
+        } else {
+          trackAnalytics('New game',{});
+        }
       });
     };
     
@@ -128,9 +139,11 @@ angular.module('chessApp')
             return;
           } else {
             $scope.historyStep = newHistoryStep;
+            trackAnalytics('Game forwarded/rewound',{ 'Move count':movecount,pgn: $scope.history.join(' '), 'Game length':$scope.history.length});
           }
         } else {
           $scope.historyStep = movecount;
+          trackAnalytics('Move count set',{ 'Move count':movecount,pgn: $scope.history.join(' '), 'Game lenght':$scope.history.length});
         }
         $scope.apicallinprogress = true;
         gameApi.update({ pgn: $scope.history.join(' '), moveCount: $scope.historyStep, includes: 'fen,side,status,previousMoves,previousFullMoves,pgn,availableFullMoves,board'}, function (data) {
@@ -149,6 +162,7 @@ angular.module('chessApp')
           $scope.historyLength = data.previousMoves.length;
           $scope.historyStep = data.previousMoves.length;
         });
+        trackAnalytics('New move',{ move:moveToMake, pgn: $scope.currentHistory.join(' '), 'Game length':$scope.history.length, computer: $scope.computer});
       }
     };
     
@@ -160,6 +174,7 @@ angular.module('chessApp')
           $scope.history = data.previousMoves;
           $scope.historyLength = data.previousMoves.length;
           $scope.historyStep = data.previousMoves.length;
+          trackAnalytics('Stockfish move',{ move:$scope.history[$scope.history.length-1],pgn: $scope.currentHistory.join(' '), 'Game length':$scope.history.length, computer: $scope.computer});
         });
       }
     };
@@ -172,11 +187,15 @@ angular.module('chessApp')
     $scope.rotate = function() {
       $scope.rotateBoard = !$scope.rotateBoard;
       $cookieStore.put('rotateBoard', $scope.rotateBoard);
+      trackAnalytics('Board rotated',{ rotation:$scope.rotateBoard,pgn: $scope.currentHistory.join(' '), 'Game length':$scope.history.length, computer: $scope.computer});
     };
 
     $scope.$watch('computer', function(newValue, oldValue) {
       if (newValue !== 'none') {
         autoTurn($scope.status.side);
+        trackAnalytics('Chess Engine turned on',{ computer: $scope.status.side,pgn: $scope.currentHistory.join(' '), 'Game length':$scope.history.length});
+      } else {
+        trackAnalytics('Chess Engine turned off',{ computer: $scope.status.side,pgn: $scope.currentHistory.join(' '), 'Game length':$scope.history.length});
       }
     });
 
