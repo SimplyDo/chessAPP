@@ -33,6 +33,12 @@ export CHESS_APP_PORT=80
 node server.js
 ```
 
+Analytics
+==========
+
+Any content matching app/tracking/*.html will be injected in the apps <head> tag by gulp. YOu can use this to add JS tracking to the app. At the moment the app sends certain events to mixpanel IF you add the appropiate script there.
+
+
 PM2 
 =========
 
